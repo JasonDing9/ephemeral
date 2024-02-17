@@ -1,7 +1,7 @@
 import json
 import os
 from agents.mailing import draft_email
-from client.agents.scheduling import create_event
+from agents.scheduling import create_event
 from dotenv import load_dotenv
 import subprocess
 
@@ -19,6 +19,9 @@ def handle_response(response: str):
         draft_email(json_response['recipient'], json_response['subject'], json_response['body'], USER_EMAIL)
         send_notification("Email drafted to " + json_response['recipient'] + " regarding " + json_response["subject"], "Email Drafted")
 
+    elif json_response['action'] == 'link':
+        send_notification(f"Does this link help: {json_response['link']}", json_response["description"])
+        
     elif json_response['action'] == 'schedule':
-        draft_email(json_response['attendeeEmails'], json_response['startTime'], json_response['title'], json_response["description"])
+        create_event(json_response['attendeeEmails'], json_response['startTime'], json_response['title'], json_response["description"])
         send_notification(json_response["Title"] + " scheduled with " + json_response['attendeeEmails'] + " at " + json_response["startTime"], "Event Scheduled")
