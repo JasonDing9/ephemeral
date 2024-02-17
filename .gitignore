@@ -7,4 +7,5 @@ server/token.json
 __pycache__/
 server/contacts-vectorstore.pkl
 server/context-vectorstore.pkl
+server/links-vectorstore.pkl
 .DS_Store

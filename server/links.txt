@@ -1,0 +1,8 @@
+The following link is to a Google Doccument for the hackathon project's ideation and design doccument: https://docs.google.com/document/d/1eXAcPF0r35dyT_zn38gOPHIMLsN2G1MxM8f-rjSWodY/edit
+The following link is to a GitHub repository, which has all of the source code for the Tree Hacks 2024 project: https://github.com/pgasawa/treehacks24-dev
+The following link is to the Tree Hacks 2024 main web page that details the schedule for the event: https://live.treehacks.com/
+The following link is to a Google Doccument with the Tree Hacks 2024 prize lists: https://docs.google.com/document/d/1ky9_TwHPgV9X22GT6-hBZYZ5mg0m_rWEqguTpFY0Fw8/edit
+The following link is to doccumentation for how to use FAISS with LangChain: https://python.langchain.com/docs/integrations/vectorstores/faiss
+The following link is to the Tree Hacks 2024 slack workspace: https://app.slack.com/client/T06FWS6JBLG/C06GMMNGQ0J?cdn_fallback=1
+The following link is to doccumentation for how to use Together.ai's python API: https://docs.together.ai/docs/inference-python
+The following link is to the Google Drive folder that stores all the project's doccuments: https://drive.google.com/drive/u/1/folders/12A1fIfawGEhYo0qhOcgGsxsJdN5HUyje

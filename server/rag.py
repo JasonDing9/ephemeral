@@ -30,10 +30,11 @@ def query(query, file="context-vectorstore.pkl"):
         vectorstore = pickle.load(f)
     
     docs = vectorstore.similarity_search(query)
-    print(docs[0].page_content)
     return docs[0].page_content
 
 if not os.path.isfile("context-vectorstore.pkl"):
     ingestion("context.txt", "context")
 if not os.path.isfile("contacts-vectorstore.pkl"):
     ingestion("contacts.txt", "contacts")
+if not os.path.isfile("links-vectorstore.pkl"):
+    ingestion("links.txt", "links")
