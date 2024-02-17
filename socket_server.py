@@ -1,10 +1,11 @@
 import classifier
 import socket
 import threading
+import sys
 
 HOST = '10.32.80.163'  # Replace with your server's IP address
 PORT = 12345        # Choose an available port
-FILE = open("central-log.txt", "w")
+FILE = open("central-log.txt", "a")
 
 def handle_client(client_socket):
     # This function will handle the communication with each client
@@ -33,13 +34,24 @@ def start_server():
     server_socket.listen(5)
     print("Server is listening for incoming connections...")
 
-    while True:
-        # Accept a connection from a client
-        client_socket, client_address = server_socket.accept()
-        print(f"Accepted connection from {client_address}")
+    try:
+        while True:
+            # Accept a connection from a client
+            client_socket, client_address = server_socket.accept()
+            print(f"Accepted connection from {client_address}")
 
-        # Create a new thread to handle the communication with the client
-        client_handler = threading.Thread(target=handle_client, args=(client_socket,))
-        client_handler.start()
+            # Create a new thread to handle the communication with the client
+            client_handler = threading.Thread(target=handle_client, args=(client_socket,))
+            client_handler.start()
+        
+    except KeyboardInterrupt:
+        print("KeyboardInterrupt: Shutting down the server.")
+        shutdown_server()
+
+
+def shutdown_server(signum=None, frame=None):
+    print("Shutting down the server.")
+    FILE.close()
+    sys.exit(0)
 
 start_server()
