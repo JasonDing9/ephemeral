@@ -3,3 +3,5 @@ treehacks24-venv/
 credentials.json
 token.json
 __pycache__/
+server/contacts-vectorstore.pkl
+server/context-vectorstore.pkl

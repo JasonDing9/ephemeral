@@ -74,7 +74,7 @@ def send_email(sender_email, recipient_email, subject, body):
     print(f"Error drafting email: {e}")
 
 # Example usage
-sender_email = "pgasawa@berkeley.edu"
+sender_email = "jasonding@berkeley.edu"
 recipient_email = "arvind.rajaraman@berkeley.edu"
 subject = "Your Email Subject"
 body = "Your email message here."

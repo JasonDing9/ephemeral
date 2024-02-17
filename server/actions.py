@@ -43,7 +43,7 @@ Conversation: {context}
     
     output = together.Complete.create(
         prompt = f"[INST] {prompt} [/INST]",
-        model = "meta-llama/Llama-2-13b-chat-hf", 
+        model = "meta-llama/Llama-2-70b-chat-hf", 
         max_tokens = 512,
         temperature = 0.7,
         top_k = 50,
@@ -54,6 +54,12 @@ Conversation: {context}
     )
 
     # print generated text
-    print(output['output']['choices'][0]['text'])
+    response = output['output']['choices'][0]['text']
+    if not response.find("{") or not response.find("}"):
+        return -1
+    json_result = response[response.find("{"):response.find("}")+1]
+    print(json_result)
+    return json_result
+
 
 send_email("Arvind said: I will send an email to Jason to remind him to finish the project by this Friday.")
