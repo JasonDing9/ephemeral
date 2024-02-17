@@ -2,7 +2,7 @@ import socket
 import threading
 import sys
 
-HOST = '10.32.80.163'  # Replace with your server's IP address
+HOST = '192.0.0.2'  # Replace with your server's IP address
 PORT = 12345        # Choose an available port
 FILE = open("central-log.txt", "a")
 

@@ -3,7 +3,7 @@ import speech_recognition as sr
 
 # 1. Setup socket connection with server
 
-HOST = '10.32.82.125'  # Replace with server's IP address
+HOST = '192.0.0.2'  # Replace with server's IP address
 PORT = 12345        # Same port as server
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((HOST, PORT))
@@ -18,10 +18,10 @@ with sr.Microphone() as source:
     while True:
         audio = recognizer.listen(source)
         try:
-            transcribed_words = recognizer.recognize_google(audio)
+            transcribed_words = recognizer.recognize_whisper(audio)
             print("You said:", transcribed_words)
             s.sendall(transcribed_words.encode("utf-8"))
         except sr.UnknownValueError:
-            print("Google Speech Recognition could not understand audio")
+            print("Whisper Speech Recognition could not understand audio")
         except sr.RequestError as e:
-            print("Could not request results from Google Speech Recognition service; {0}".format(e))
+            print("Could not request results from Whisper Speech Recognition service; {0}".format(e))
