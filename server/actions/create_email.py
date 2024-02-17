@@ -1,6 +1,6 @@
 import together
 import os
-from rag import query
+from actions.rag import query
 from dotenv import load_dotenv
 import json
 
@@ -65,4 +65,4 @@ Conversation: {context}
 
     return json.dumps(json_result)
 
-create_email("Parth said: I will send an email to Arvind to remind him to finish the project by this Friday.")
+# create_email("Parth said: I will send an email to Arvind to remind him to finish the project by this Friday.")
