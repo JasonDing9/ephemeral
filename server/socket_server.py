@@ -16,7 +16,7 @@ def handle_client(client_socket):
             break  # Break the loop if no data is received
         print(f"Received data from {client_socket.getpeername()}: {data.decode('utf-8')}")
         data = data.decode('utf-8')
-        classify(data)
+        json_result = classify(data)
         FILE.write(data + "\n")
     # Close the connection when the client disconnects
     print(f"Connection with {client_socket.getpeername()} closed.")

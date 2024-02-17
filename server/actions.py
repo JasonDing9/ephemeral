@@ -2,7 +2,6 @@ import together
 import os
 from rag import query
 from dotenv import load_dotenv
-from agents.mailing import draft_email
 import json
 
 load_dotenv()
@@ -25,7 +24,7 @@ JSON Response:
 }}
     
 Example email #2:
-Conversation: Jason said: I'll send an email to ask Arvind if the classification model has finished trainining.
+Conversation: Jason said: I'll send an email to ask Arvind if the classification model has finished training.
 JSON Response:
 {{
     "recipient": "arvind.rajaraman@berkeley.edu",
@@ -64,8 +63,10 @@ Conversation: {context}
     print(json_result)
     
     json_result = json.loads(json_result)
-    draft_email(json_result["recipient"], json_result["subject"], json_result["body"], USER_EMAIL)
-    return json_result
+    json_result["action"] = "email"
+    # draft_email(json_result["recipient"], json_result["subject"], json_result["body"], USER_EMAIL)
+
+    return json.dumps(json_result)
 
 
 # create_email("Parth said: I will send an email to Arvind to remind him to finish the project by this Friday.")
