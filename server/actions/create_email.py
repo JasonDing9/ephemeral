@@ -12,7 +12,7 @@ def create_email(context):
     rag_context = query(context, "context-vectorstore.pkl")
     rag_contacts_context = query(context, "contacts-vectorstore.pkl")
     prompt = f"""
-You are an AI assistant for helping to write emails. Given the following meeting conversation, please write a one or two sentence email given the following conversation. Please just return a JSON response. If you do not know the reciepient's email address, put UNKNOWN in the recipient field. 
+You are an AI assistant for helping to write emails. Given the following meeting conversation, please write a one or two sentence email given the following conversation. Please just return a JSON response. If you do not know the reciepient's email address, put "UNKNOWN" in with quotes the recipient field. For the body, please use display \\n characters and not a new line.
     
 Example email #1:
 Conversation: Ayushi said: Yeah, I'll send an email to Parth for a one-on-one call.
@@ -30,6 +30,15 @@ JSON Response:
     "recipient": "arvind.rajaraman@berkeley.edu",
     "subject": "Classification Model Inquiry",
     "body": "Hi Arvind,\\n\\nIs the classification model finished training?\\n\\nBest,\\nJason"
+}}
+
+Example email #3:
+Conversation: Can everyone open the Tree Hacks slack?
+JSON Response:
+{{
+    "recipient": "UNKNOWN",
+    "subject": "Tree Hacks Slack",
+    "body": "Hi everyone,\n\nCan you open the Tree Hacks slack?\n\nBest"
 }}
     
 ========

@@ -12,7 +12,7 @@ def get_link(context):
     rag_context = query(context, "context-vectorstore.pkl")
     rag_links_context = query(context, "links-vectorstore.pkl")
     prompt = f"""
-You are an AI assistant to help retrieve relevent link. Given the following meeting conversation, please determine if there is a corresponding link related to it. Please just return a JSON response. If there is no closely related link to the conversation, make sure to not falsely return a link. Instead, please return an empty string for the link. 
+You are an AI assistant to help retrieve relevent link. Given the following meeting conversation, please determine if there is a corresponding link related to it. Please just return a JSON response and make sure there are quotes around the link. If there is no closely related link to the conversation, make sure to not falsely return a link. Instead, please return an empty string for the link. 
     
 Example #1:
 Conversation: Arvind said: Can everyone open up our Tree Hack's project ideation doc?
