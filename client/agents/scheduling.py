@@ -34,7 +34,7 @@ def get_credentials():
     return creds.to_json()
 
 
-def send_cal_invite(attendeeEmails: List[str], startTime: str, title: str, description: str):
+def create_event(attendeeEmails: List[str], startTime: str, title: str, description: str):
     creds = Credentials.from_authorized_user_info(json.loads(get_credentials()), SCOPES)
     service = build('calendar', 'v3', credentials=creds)
 
@@ -58,4 +58,4 @@ def send_cal_invite(attendeeEmails: List[str], startTime: str, title: str, descr
     }
     event = service.events().insert(calendarId='primary', body=event).execute()
 
-send_cal_invite(["arvind.rajaraman@berkeley.edu"], "2024-02-17T12:00:00")
+# send_cal_invite(["arvind.rajaraman@berkeley.edu"], "2024-02-17T12:00:00")
