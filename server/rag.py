@@ -1,22 +1,11 @@
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_community.document_loaders import UnstructuredFileLoader
 from langchain.vectorstores.faiss import FAISS
-from langchain_community.embeddings import OpenAIEmbeddings
-# from langchain_together import TogetherEmbeddings
 from langchain_community.embeddings import HuggingFaceEmbeddings
 import pickle
-import nltk
-import openai
-import os
 from dotenv import load_dotenv
-import together
 
 load_dotenv()
-os.environ['TOGETHER_API_KEY'] = os.environ['TOGETHER_API']
-# together.api_key = os.environ['TOGETHER_API']
-
-nltk.download('punkt')
-nltk.download('averaged_perceptron_tagger')
 
 def ingestion():
     # Load Data
