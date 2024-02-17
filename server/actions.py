@@ -24,7 +24,7 @@ JSON Response:
 }}
     
 Example email #2:
-Conversation: Jason said: I'll send an email to ask Arvind if the classification model has finished trainining.
+Conversation: Jason said: I'll send an email to ask Arvind if the classification model has finished training.
 JSON Response:
 {{
     "recipient": "arvind.rajaraman@berkeley.edu",
