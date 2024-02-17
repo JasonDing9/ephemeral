@@ -1,0 +1,186 @@
+Overview
+The purpose of this course is to teach the design of operating systems and operating systems concepts that appear in other computer systems. Topics we will cover include concepts of operating systems, systems programming, networked and distributed systems, and storage systems, including multiple-program systems (processes, interprocess communication, and synchronization), memory allocation (segmentation, paging), resource allocation and scheduling, file systems, basic networking (sockets, layering, APIs, reliability), transactions, security, and privacy.
+
+Prerequisites
+CS 61A, CS 61B, CS 61C, and CS 70, or equivalent courses. This means that you understand:
+
+Data structures: arrays, linked lists, binary trees, and hashing
+Assembly language programming
+The C programming language
+Debugging C using GDB
+CPU caches and memory hierarchy
+Virtual memory as covered in CS 61C
+CPU pipelines and basic digital logic design
+Basic knowledge of random variables and probability distributions as covered in CS 70
+The TAs will spend a small amount of time reviewing some of the material you are less likely to remember. We will assume that you either know the material that is supposed to be covered in those courses, or that you are willing to learn the material as necessary. We will not spend time in lecture covering any of this material. Perhaps more important than formal prequisites, however, is experience and maturity with debugging large programs, designing and implementing useful abstractions, and computational problem solving in general. This class will exercise your skills in these areas.
+If you feel that you would benefit from additional review of these prerequisites, we recommend using the following resources:
+
+1. For a good review of probability as you’ll need it in this class, read through CS 70 Lecture Notes 15, 16, 17, 18, and 19.
+
+2. Hennessy, John L. and Patterson, David A. Computer Architecture: A Quantitative Approach. 5th edition. Although the main content of this book goes far more in-depth into computer architecture than you are expected to know for this class, the appendices provide an excellent overview of some of the prerequisites. Focus specifically on the sections below:
+
+2.1 and B.1 - B.4 (you can skip the sixth optimization in B.3) review caching, virtual memory, and memory hierarchies.
+C.1 - C.2 review CPU pipelines at the level of CS 61C.
+Enrollment
+Please do not email us or post on Ed about the waitlist. All decisions concerning appeals for enrolling in the course are made by CS departmental staff; the course staff have no say in the matter. If you have questions or concerns, feel free to contact the departmental staff.
+
+The course has an early drop deadline (second Friday of instruction). This is due to the large group component in this class.
+
+If you are finishing an incomplete this term, do NOT enroll in the course. Instead, please email the the course email cs162@eecs to coordinate your plan for finishing the incomplete. Similarly, if you are given the grade of I (incomplete) this term, you should not re-register in CS 162 in a future term to complete the incomplete, and you should instead coordinate with the instructor and head TA in a future term in order to finish your incomplete.
+
+Additionally, if you are finishing an incomplete this term, you cannot change any grades that you had in the gradebook in the semester you were given the incomplete.
+
+Grading
+At the end of the term, each student is assigned a score out of 100 points. It is determined as follows:
+
+36% Exams
+36% Projects
+18% Homeworks
+10% Participation
+All three projects will be equally weighted, and all homeworks will be equally weighted as well. Project 0 counts as a homework assignment since it is done individually.
+It is important that you attend discussion sections and get to know your TA. TAs will provide essential specifics on hands-on aspects of the course, including tools, techniques and concepts. In the past, TAs have bumped borderline grade cases up or down based on participation.
+
+Discussion attendance and design review attendance is mandatory and your cameras must be ON when in online discussion sections and design reviews. This will count towards your participation grade.
+
+Once students' raw scores are computed as described above, final grades are assigned using a curved scale in line with the department policy.
+
+We will only grant an incomplete in exceptional circumstances, when the majority of the work has been completed to a passing grade and a medical or family emergency prevents completion of a small fraction of the course.
+
+Lecture
+Professor Kubiatowicz will deliver lectures from 12:30-2:00 PM in Dwinelle 155 on Tuesdays and Thursdays.
+
+Readings
+We are using the textbook “Operating Systems: Principles and Practice” by Anderson and Dahlin (A&D). The reading from this textbook is strongly recommended. There will be some additional readings that are not from this textbook that are freely available online. These will be linked on the course website in the "Readings" column for your viewing.
+
+Strongly Recommended
+Operating Systems: Principles and Practice (2nd Edition)
+Recommended
+Operating Systems: Three Easy Pieces
+Supplemental
+Linux Kernel Development (3rd Edition)
+Exams
+Three midterm exams will be scheduled without a final exam. Each midterm will focus on the material in projects and lectures in that third of the course, but all material from lectures, discussions, readings, homeworks, and projects up to that point are in scope. You are likely to do poorly on the exams and in the course if you do not do your share of the work on the project.
+
+Check the schedule on the front page for exam dates and times. If you have a conflict, please let us know using the conflict form linked on the schedule, and we will do our best to schedule a makeup. You must have a valid reason for a conflict (e.g. other exams). All exams will be closed book with the exception of a certain number of cheatsheets which will be determined prior to the exam.
+
+Each exam will hold equal weight in your overall grade.
+
+If you have a DSP accommodation for exams, we will contact you prior to each midterm. Please reach out to us if we do not.
+
+Unlike recent terms, Exams will be in person, unless Berkeley is closed for virtual instruction.
+
+Homeworks
+The homeworks and projects in this class are a great way to get hands-on experience building systems. We have tried hard to keep the workload manageable and to focus on learning concepts, rather than busy work.
+
+Homeworks and projects will all be submitted and autograded via GitHub. Individuals and groups will have course-provided GitHub repositories. Intermediate pushes will help the staff see how students are progressing.
+
+We see homework mostly as a chance for exercise. Solutions will not be made available online, but you may come to Office Hours to see them 2 days after all possible slip days on the assignment have expired.
+
+Projects
+We will be using the Pintos educational operating system for all projects this term. The projects in this course provide a deep experience with operating system and distributed system design and implementation. The project experience is essential to the course.
+
+If you plan to do software or hardware development after graduation, you will almost certainly need to know how to work in a group. Recent CS grads almost all say that the ability to work in groups was the single most important thing they wished they had learned at Berkeley. Hence, for these projects, you will need to form groups of 4 people. We will not permit anyone to do the projects in a group smaller than 3, and we will only permit a few groups to have a size of three, if the class is not evenly divisible by 4. All projects will be a group effort excluding Project 0. The assignments will be the same no matter what size group you have. In order to ensure everyone in the group does their fair share of the work, we will ask each of you to turn in assessments of the relative contributions of your project partners. These assessments are important, and they can have a substantial impact on your grade if you do not participate.
+
+TAs will grade parts of your project. The TAs have been instructed to grade in part on design. In other words, it is not enough to get a working solution; you must implement the solution in a clean way that would simplify making further enhancements. (Several employers in the area have said that many of our graduates don’t know how to program well — it will really benefit you in the long run to work on your software engineering skills.)
+
+For each project, you will turn in an initial design document and a TA will meet with your group for an oral presentation of your design at a design review. These reviews serve several purposes:
+
+To encourage you to get an early start on the assignments (a key to success in this course).
+To catch design errors early, before you spend a lot of time coding and debugging.
+To give you an opportunity to explain and defend your approach (this is an important skill to learn as engineers).
+To provide an opportunity to assess your understanding of the project.
+Participation in these design reviews will be factored into your participation grade. Following the review, you will turn in the actual project code to GitHub, which will be graded by our autograder. You will also be asked to submit a final report summarizing your experience with the project, including changes you made to your design.
+Discussions
+Discussion attendance is mandatory and will be a portion of your grade (see Grading). We will assign groups after the Early Drop Deadline, so you are free to explore different sections for the first two discussions. However, starting from the third discussion, you will be required to attend your assigned section, which all of your project group will be assigned to. There will be a group registration form to determine your availability and preferences to ensure your entire group will be able to make it to the same section.
+
+Extensions
+All assignments are due at 11:59:00 PM Pacific Time on the day listed on the schedule unless otherwise specified.
+
+Your group gets 5 project “slip days”. Project slip days can not be used for Project 0 or design docs submissions. Design docs will get a score of 0 if submitted after the deadline. After project slip days are used up, your assignment score will be discounted by 10% on the 1st late day, 20% the 2nd, 40% the 3rd, and 80% the 4th. If submitted 5 days late or more, projects will get a score of 0.
+
+There are 4 homework “slip days”. You can use up to and including 3 slip days on any particular homework assignment. Project 0 will use homework slip days instead of project slip days since it is an individual assignment. Likewise, project evaluations will use homework slip days and we will compute the slip days used according to: max(0, min(eval submission - project deadline, eval submission - code and report submission)) This effectively means that you can turn in evals along with late projects for no additional individual penalty. Similar to projects, after homework slip days are used up, your assignment score will be discounted by 10% on the 1st late day, 20% the 2nd, 40% the 3rd, and 80% the 4th. If submitted 5 days late or more, homework assignments will get a score of 0.
+
+Slip days can only be used in whole numbers. Slip days can be used up by manually running the autograder. Slip day calculations are based on when you run the autograder and not when you push your changes. Although no credit will be given for submissions after slip days have expired, we may be lenient in special circumstances, and grant manual extensions on assignments at our discretion. However, it is your responsibility to distribute your slip days throughout the semester, so make sure to save these for emergency situations. Please stay in touch with your TA and keep them updated on any circumstances that may lead you to submit a homework or project late.
+
+DSP students and other students facing extenuating circumstances can request extensions through the extensions form linked at the navbar. Please make sure to request extensions in a timely manner; we may not be able to give you a response if you make a request very close to the deadline.
+
+Ed
+Ed will be the main mode of communication. It is your responsibility to check Ed on a frequent basis to make sure you're up to date on important logistics.
+
+The following rules are in place to keep Ed organized. Any violation of the rules may result in your post being removed. If you are warned twice about inappropriate postings on Ed, you will be permanently removed.
+
+Posts
+Prior to making a Ed post, make sure you've spent some time trying to tackle the problem on your own. This includes
+
+Reading through similar posts/follow-ups
+Searching the internet for help (within the rules of integrity)
+Format
+Make sure the title is of the form “[Folder] Title” where folder is one of the folder names. This helps us recognize what the post is about right away! In the body of your post, you should make sure to include
+
+A clear and concise description of the problem
+What you believe is causing the problem
+Some of the things you've done to try to resolve the problem
+Please format your question in a legible way! If using any code, make sure to use the code formatter and similarly for math equations.
+Public
+There should be a very small number of public posts regarding content. Please ask questions as follow-ups on appropriate threads for each homework, project, discussion, or lecture. There will inevitably be some posts about logistics, but these should be posted as follow-ups as well whenever possible.
+
+One of the primary reason for students posting as a public post instead of in a thread is to make sure their post gets visibility. However, follow-ups and public posts get the same amount of visibility from staff because we will monitor posts by filtering “Unresolved follow-ups”.
+
+Make sure to resolve and unresolve questions appropriately.
+
+Private
+Please try to make Ed posts public where reasonable. If you have personal circumstances you want to discuss with course staff, you may make a private post. If you would like your concerns to only be visible to the head TA(s) and instructor(s), you may email cs162@eecs. We generally cannot debug code over Ed. Private posts asking for debugging help will not be looked at; we recommend going to OH for these issues.
+
+Inclusivity
+Any content on public forums like Ed that similarly targets, excludes, disrespects or discriminates against a certain individual or community will be removed and the person responsible for the content will face repercussions. Please aim to keep the climate inclusive for everyone.
+
+If at any point you have felt targeted, excluded, disrespected, or discriminated against by a student or someone from course staff, please report the incident with any member of course staff that you are comfortable with or the Head TAs or professor. If you would rather not speak to someone from staff, consider contacting the ASUC Student Advocate’s Office.
+
+Collaboration
+Projects are a shared responsiblity and all project members will incur penalties for academic misconduct. You are accountable for the actions of your teammates.
+Maintaining academic integrity is a crucial part of your learning experience, as misconduct prevents us as instructors from understanding where our model of instruction isn’t working. We encourage you to ask other students in this semester’s course about the concepts, algorithms, or approaches needed to do the projects and assignments; both giving and taking advice will help you to learn. However, what you turn in must be your own, or for projects, your group’s own work; copying other people’s code, solution sets, or from any other sources, including online sources and generative AI tools, is strictly prohibited. The project assignments must be the work of the students turning them in. Wherever you have benefited from the work of others, you should credit it properly in your code and/or writeup. Note: Only projects are group assignments. Homeworks are individual and you should not look at or copy other code, even that of your project groupmates.
+
+Examples of acceptable collaboration between students in different project groups in this semester’s course:
+
+Explaining a concept to another student, or asking another student to explain a concept to you
+Discussing various algorithms or approaches for project components
+Discussing testing strategies and approaches
+Searching online for algorithms or implementations of generic (non-project-specific) abstractions (e.g., searching for various implementations of a hash table)
+Helping another student with high-level debugging approaches (note that it is NOT acceptable to give that student code solutions or even look at their code, as described below)
+Examples of unacceptable collaboration:
+
+Looking at code from a different group’s project or another student’s homework — this includes looking at online code from prior semesters or other institutions
+Using code from a different group’s project or another student’s homework — this includes incorporating online code from prior semesters or other institutions
+Looking at or using design docs from other groups, past semesters, or online sources
+Looking at or using specific test case instances from a different group’s project or another student’s homework — this includes incorporating online code from prior semesters or other institutions
+Searching online for specific implementations of project abstractions or functions
+Using generative AI tools like ChatGPT for assignments
+We use an automated system for detecting academic misconduct: it performs a pairwise comparison of all assignment submissions with all others for this class, prior semester classes, and various online repositories. The system reports any suspicious similarities. The course staff will manually review any such similarities. Moreover, we have a dedicated staff of readers who will manually review code, and note similarities between algorithms and designs used in other students solutions as well as any solutions available online. Do NOT try to fool our automatic cheating detection system, because you WILL be caught by our human readers.
+
+Note that you are responsible for not leaving copies of your assignments lying around and for protecting your files — do not use public unprotected source code repositories to store your code. You must set up your files and directories so that they are protected from others reading them.
+
+Any mechanisms used in attempt to "hardcode" solutions to homeworks or projects will be punishable as academic misconduct cases. We reserve the right to evaluate submitted code on our private test suites which can detect hardcoded solutions, and our readers may manually inspect your code solution for any such instances of misconduct.
+
+If two assignments are determined to be obviously very similar (i.e., we believe that they were done together or one was copied from the other), then all the students involved the incident, both the copy-er and the copy-ee, will receive a penalty. The minimum penalty is -100% on the assignment. More serious cases of academic dishonesty, such as repeat offences or cheating on exams, will incur a greater penalty at the instructor's discretion, such as receiving an F in the class. In addition, for every instance, a letter to the Center of Student Conduct will be attached to your permanent record, and a copy will be placed in the CS division office.
+
+This course is challenging. If you ever feel tempted to resort to academic dishonesty to meet a deadline, please don't. Contact your TA instead; they are here to help!
+
+Office Hours
+All staff members will host office hours throughout the week. Professor office hours are meant for conceptual questions from lecture. Any questions or debugging help regarding assignments should be directed towards TA and reader office hours.
+
+Like posting on Ed, we expect you to have put in substantial effort to debug before coming to office hours.
+
+Format
+Office hours will be held primarily in person. Please visit the OH Queue linked at the top to queue yourself up for office hours. In between OH, the queue may be cleared to ensure fairness. If you would like individual help from a staff member, then please fill out a ticket on the OH Queue. Make sure that you have filled out the ticket template in detail or we may skip your ticket.
+
+Copyright
+All course materials are protected by US copyright law and by university policy.
+
+Under no circumstances are students permitted to upload course materials online or distribute these materials to anyone enrolled or not enrolled in the course. This policy will be enforced during and after the course.
+
+This policy applies to any course materials that are not already publicly available, including but not limited to:
+
+Exam Questions and Solutions
+Design Documents and Final Reports
+Homework and Project Solutions
+Please see the Collaboration for information on sharing course materials among enrolled students.
