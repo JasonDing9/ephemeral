@@ -50,13 +50,8 @@ def classify(text):
         return create_email(text)
     elif action == 'clarify':
         return clarify_search(text)
-<<<<<<< HEAD
-    if action == 'link':
-        get_link(text)
-=======
     elif action == 'link':
         return get_link(text)
->>>>>>> a5fe1daa36191f0ba7a6fe43e9b4c26418eb9789
 
 # classify("I will send an email to Arvind to remind him to finish the project by this Friday.")
 # classify("Can everyone open the doccumentation of FAISS for our project?")
