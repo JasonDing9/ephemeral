@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from sentence_transformers import SentenceTransformer
-from actions import create_email
+from server.actions.create_email import create_email
 
 CLASSES = ["clarify", "email", "link", "schedule", "unknown"]
 
