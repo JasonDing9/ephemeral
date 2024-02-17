@@ -46,6 +46,7 @@ def create_message(sender_email, recipient_email, subject, body):
   Creates a MIME message object for sending email.
   """
   message = MIMEText(body, "plain")
+
   message["to"] = recipient_email
   message["from"] = sender_email
   message["subject"] = subject
@@ -61,12 +62,16 @@ def send_email(sender_email, recipient_email, subject, body):
 
   message = create_message(sender_email, recipient_email, subject, body)
   encoded_message = base64.urlsafe_b64encode(message.encode()).decode()
-  raw_message = {"raw": encoded_message}
+  # Uncomment below for sending
+  # raw_message = {"raw": encoded_message}
+  raw_message = {"message": {"raw": encoded_message}}
   try:
-    message = service.users().messages().send(userId="me", body=raw_message).execute()
-    print(f"Email sent successfully! Message ID: {message['id']}")
+    # Uncomment below for sending
+    # message = service.users().messages().send(userId="me", body=raw_message).execute()
+    draft = service.users().drafts().create(userId="me", body=raw_message).execute()
+    print(f"Draft create successfully! Draft ID: {draft['id']}")
   except Exception as e:
-    print(f"Error sending email: {e}")
+    print(f"Error drafting email: {e}")
 
 # Example usage
 sender_email = "pgasawa@berkeley.edu"
