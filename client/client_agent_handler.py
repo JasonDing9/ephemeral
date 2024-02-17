@@ -2,6 +2,7 @@ import json
 import os
 from agents.mailing import draft_email
 from agents.scheduling import create_event
+from agents.clarify import search_google
 from dotenv import load_dotenv
 import subprocess
 
@@ -25,3 +26,9 @@ def handle_response(response: str):
     elif json_response['action'] == 'schedule':
         create_event(json_response['attendeeEmails'], json_response['startTime'], json_response['title'], json_response["description"])
         send_notification(json_response["Title"] + " scheduled with " + json_response['attendeeEmails'] + " at " + json_response["startTime"], "Event Scheduled")
+
+    elif json_response['action'] == 'clarify':
+        if json_response['result'] != "NONE":
+            send_notification(json_response['response'], "Quick Inisght")
+        else:
+            send_notification(search_google(json_response['search_query']), "More Info")

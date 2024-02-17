@@ -1,9 +1,9 @@
-from classifier import classify
 import socket
 import threading
 import sys
 import os
 from dotenv import load_dotenv
+from classifier import classify
 
 load_dotenv()
 
@@ -21,6 +21,7 @@ def handle_client(client_socket):
             break  # Break the loop if no data is received
         print(f"Received data from {client_socket.getpeername()}: {data.decode('utf-8')}")
         data = data.decode('utf-8')
+    
         json_result = classify(data)
         FILE.write(data)
         if json_result:
