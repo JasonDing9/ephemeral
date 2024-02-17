@@ -1,6 +1,6 @@
 import together
 import os
-from rag import query
+from actions.rag import query
 from dotenv import load_dotenv
 import json
 
@@ -73,5 +73,5 @@ Conversation: {context}
 
     return json.dumps(json_result)
 
-get_link("Ayushi said: Can everyone open the doccumentation of FAISS for our project?")
-get_link("Jason said: Can everyone go to the discord server?")
+# get_link("Ayushi said: Can everyone open the doccumentation of FAISS for our project?")
+# get_link("Jason said: Can everyone go to the discord server?")

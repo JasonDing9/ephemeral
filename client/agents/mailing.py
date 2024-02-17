@@ -13,13 +13,7 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 # If modifying these scopes, delete the file token.json.
-SCOPES = ['https://www.googleapis.com/auth/gmail.modify']
-
-def get_user_token():
-    flow = InstalledAppFlow.from_client_secrets_file(
-        'credentials.json', SCOPES)
-    creds = flow.run_local_server(port=0)
-    return creds.to_json()
+SCOPES = ['https://www.googleapis.com/auth/calendar', 'https://www.googleapis.com/auth/gmail.modify']
 
 def get_credentials():
     creds = None
@@ -78,4 +72,4 @@ def draft_email(recipient_email, subject, body, sender_email):
 # recipient_email = "arvind.rajaraman@berkeley.edu"
 # subject = "Your Email Subject"
 # body = "Your email message here."
-# draft_email(sender_email, recipient_email, subject, body)
+# draft_email("pgasawa@berkeley.edu", recipient_email, subject, body)
