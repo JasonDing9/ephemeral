@@ -58,4 +58,4 @@ def send_cal_invite(attendeeEmails: List[str], startTime: str, title: str, descr
     }
     event = service.events().insert(calendarId='primary', body=event).execute()
 
-send_cal_invite(["arvind.rajaraman@berkeley.edu"], "2024-02-17T12:00:00")
+# send_cal_invite(["arvind.rajaraman@berkeley.edu"], "2024-02-17T12:00:00")
