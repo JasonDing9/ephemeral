@@ -2,7 +2,6 @@ import together
 import os
 from rag import query
 from dotenv import load_dotenv
-from agents.mailing import draft_email
 import json
 
 load_dotenv()
