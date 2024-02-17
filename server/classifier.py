@@ -2,7 +2,13 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from sentence_transformers import SentenceTransformer
-from server.actions.create_email import create_email
+from actions.create_email import create_email
+from actions.get_link import get_link
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+NAME = os.environ['NAME']
 
 CLASSES = ["clarify", "email", "link", "schedule", "unknown"]
 
@@ -41,8 +47,13 @@ def classify(text):
     input_ = torch.Tensor(encoder.encode([text]))
     output = classifier(input_)
     action = CLASSES[output.argmax(1)]
-    print(action)
+    print("Classified as: " + action)
+    
+    text = NAME + " said: " + text
     if action == 'email':
         return create_email(text)
+    elif action == 'link':
+        return get_link(text)
 
-# classify("Parth said: I will send an email to Arvind to remind him to finish the project by this Friday.")
+# classify("I will send an email to Arvind to remind him to finish the project by this Friday.")
+# classify("Can everyone open the doccumentation of FAISS for our project?")

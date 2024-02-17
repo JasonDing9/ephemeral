@@ -32,9 +32,9 @@ def query(query, file="context-vectorstore.pkl"):
     docs = vectorstore.similarity_search(query)
     return docs[0].page_content
 
-if not os.path.isfile("actions/context-vectorstore.pkl"):
+if not os.path.isfile("context-vectorstore.pkl"):
     ingestion("context.txt", "context")
-if not os.path.isfile("actions/contacts-vectorstore.pkl"):
+if not os.path.isfile("contacts-vectorstore.pkl"):
     ingestion("contacts.txt", "contacts")
-if not os.path.isfile("actions/links-vectorstore.pkl"):
+if not os.path.isfile("links-vectorstore.pkl"):
     ingestion("links.txt", "links")
