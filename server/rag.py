@@ -9,7 +9,7 @@ load_dotenv()
 
 def ingestion():
     # Load Data
-    loader = UnstructuredFileLoader("context.txt")
+    loader = UnstructuredFileLoader("contacts.txt")
     raw_documents = loader.load()
 
     # Split text
@@ -21,7 +21,7 @@ def ingestion():
     vectorstore = FAISS.from_documents(documents, embeddings)
 
     # Save vectorstore
-    with open(f"vectorstore.pkl", "wb") as f:
+    with open(f"contacts-vectorstore.pkl", "wb") as f:
         pickle.dump(vectorstore, f)
 
 ingestion()
