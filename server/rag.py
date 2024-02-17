@@ -35,5 +35,5 @@ def query(query, file="context-vectorstore.pkl"):
 
 if not os.path.isfile("context-vectorstore.pkl"):
     ingestion("context.txt", "context")
-if not os.path.isfile("context-vectorstore.pkl"):
+if not os.path.isfile("contacts-vectorstore.pkl"):
     ingestion("contacts.txt", "contacts")

@@ -2,9 +2,14 @@ from classifier import classify
 import socket
 import threading
 import sys
+import os
+from dotenv import load_dotenv
 
-HOST = '10.19.183.28'  # Replace with your server's IP address
-PORT = 12345        # Choose an available port
+load_dotenv()
+
+socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+HOST = os.environ["HOST"]
+PORT = int(os.environ["SERVER_LISTEN_PORT"])
 FILE = open("central-log.txt", "a")
 
 def handle_client(client_socket):
@@ -17,27 +22,28 @@ def handle_client(client_socket):
         print(f"Received data from {client_socket.getpeername()}: {data.decode('utf-8')}")
         data = data.decode('utf-8')
         json_result = classify(data)
-        FILE.write(data + "\n")
+        FILE.write(data)
+        if json_result:
+            client_socket.sendall(json_result.encode('utf-8'))
+        else: 
+            client_socket.sendall("No results".encode('utf-8'))
     # Close the connection when the client disconnects
     print(f"Connection with {client_socket.getpeername()} closed.")
     client_socket.close()
 
 def start_server():
-    # Create a socket object
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
     # Bind the socket to a specific address and port
     server_address = (HOST, PORT)
-    server_socket.bind(server_address)
+    socket.bind(server_address)
 
     # Listen for incoming connections (maximum 5 clients in the queue)
-    server_socket.listen(5)
-    print("Server is listening for incoming connections...")
+    socket.listen(5)
+    print("Listening server is listening for incoming connections...")
 
     try:
         while True:
             # Accept a connection from a client
-            client_socket, client_address = server_socket.accept()
+            client_socket, client_address = socket.accept()
             print(f"Accepted connection from {client_address}")
 
             # Create a new thread to handle the communication with the client
@@ -48,9 +54,8 @@ def start_server():
         print("KeyboardInterrupt: Shutting down the server.")
         shutdown_server()
 
-
-def shutdown_server(signum=None, frame=None):
-    print("Shutting down the server.")
+def shutdown_server():
+    print("Shutting down the listening server.")
     FILE.close()
     sys.exit(0)
 
