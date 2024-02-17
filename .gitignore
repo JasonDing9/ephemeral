@@ -1,2 +1,4 @@
 treehacks24-venv/
 .env
+credentials.json
+token.json
