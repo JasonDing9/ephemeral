@@ -5,6 +5,7 @@ from timeit import default_timer as timer
 import asyncio
 import os
 from dotenv import load_dotenv
+from client_agent_handler import handle_response
 
 load_dotenv()
 HOST = os.environ["HOST"]
@@ -38,7 +39,10 @@ def transcribe(recognizer, audio):
         print("You said:", transcribed_words)
         print("=============")
         socket.sendall(transcribed_words.encode("utf-8"))
-        print("HERE I AM TRYING TO RECEIVE DATA: ",socket.recv(1024).decode('utf-8'))
+        response = socket.recv(1024).decode('utf-8')
+        print("HERE I AM TRYING TO RECEIVE DATA: " + response)
+        if response != "No results":
+            handle_response(response)
     except sr.UnknownValueError:
         print("Whisper Speech Recognition could not understand audio")
     except sr.RequestError as e:
