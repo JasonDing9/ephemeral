@@ -43,6 +43,6 @@ def classify(text):
     action = CLASSES[output.argmax(1)]
     print(action)
     if action == 'email':
-        create_email(text)
+        return create_email(text)
 
 # classify("Parth said: I will send an email to Arvind to remind him to finish the project by this Friday.")

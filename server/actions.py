@@ -64,8 +64,10 @@ Conversation: {context}
     print(json_result)
     
     json_result = json.loads(json_result)
-    draft_email(json_result["recipient"], json_result["subject"], json_result["body"], USER_EMAIL)
-    return json_result
+    json_result["action"] = "email"
+    # draft_email(json_result["recipient"], json_result["subject"], json_result["body"], USER_EMAIL)
+
+    return json.dumps(json_result)
 
 
 # create_email("Parth said: I will send an email to Arvind to remind him to finish the project by this Friday.")
