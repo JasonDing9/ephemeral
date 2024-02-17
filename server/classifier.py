@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from sentence_transformers import SentenceTransformer
+from server.actions import send_email
 
 CLASSES = ["clarify", "email", "link", "schedule", "todos", "unknown"]
 
@@ -39,4 +40,6 @@ classifier.load_state_dict(torch.load("action_classifier.pt"))
 def classify(text):
     input_ = torch.Tensor(encoder.encode([text]))
     output = classifier(input_)
-    return CLASSES[output.argmax(1)]
+    action = CLASSES[output.argmax(1)]
+    if action == 'email':
+        send_email(text)
