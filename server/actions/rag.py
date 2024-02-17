@@ -33,8 +33,8 @@ def query(query, file="context-vectorstore.pkl"):
     return docs[0].page_content
 
 if not os.path.isfile("context-vectorstore.pkl"):
-    ingestion("context.txt", "context")
+    ingestion("actions/context.txt", "context")
 if not os.path.isfile("contacts-vectorstore.pkl"):
-    ingestion("contacts.txt", "contacts")
+    ingestion("actions/contacts.txt", "contacts")
 if not os.path.isfile("links-vectorstore.pkl"):
-    ingestion("links.txt", "links")
+    ingestion("actions/links.txt", "links")
