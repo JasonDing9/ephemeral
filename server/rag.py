@@ -4,12 +4,13 @@ from langchain.vectorstores.faiss import FAISS
 from langchain_community.embeddings import HuggingFaceEmbeddings
 import pickle
 from dotenv import load_dotenv
+import os.path
 
 load_dotenv()
 
-def ingestion():
+def ingestion(file="context.txt", name="context"):
     # Load Data
-    loader = UnstructuredFileLoader("contacts.txt")
+    loader = UnstructuredFileLoader(file)
     raw_documents = loader.load()
 
     # Split text
@@ -21,14 +22,18 @@ def ingestion():
     vectorstore = FAISS.from_documents(documents, embeddings)
 
     # Save vectorstore
-    with open(f"contacts-vectorstore.pkl", "wb") as f:
+    with open(f"{name}-vectorstore.pkl", "wb") as f:
         pickle.dump(vectorstore, f)
 
-def query(file="context-vectorstore.pkl"):
+def query(query, file="context-vectorstore.pkl"):
     with open(file, "rb") as f:
         vectorstore = pickle.load(f)
-
-    docs = vectorstore.similarity_search("What is the email?")
+    
+    docs = vectorstore.similarity_search(query)
     print(docs[0].page_content)
+    return docs[0].page_content
 
-query()
+if not os.path.isfile("context-vectorstore.pkl"):
+    ingestion("context.txt", "context")
+if not os.path.isfile("context-vectorstore.pkl"):
+    ingestion("contacts.txt", "contacts")
