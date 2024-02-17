@@ -8,4 +8,7 @@ __pycache__/
 server/contacts-vectorstore.pkl
 server/context-vectorstore.pkl
 server/links-vectorstore.pkl
+server/actions/contacts-vectorstore.pkl
+server/actions/context-vectorstore.pkl
+server/actions/links-vectorstore.pkl
 .DS_Store
