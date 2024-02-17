@@ -1,4 +1,4 @@
-from classifier import classify
+from server.classifier import classify
 import socket
 import threading
 import sys
