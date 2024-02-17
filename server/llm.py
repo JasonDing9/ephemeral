@@ -17,7 +17,7 @@ print(model_names[:10])
 prompt = "I will send an email to Jason."
 output = together.Complete.create(
   prompt = f"<human>: {prompt}\n<bot>:", 
-  model = "togethercomputer/RedPajama-INCITE-7B-Instruct", 
+  model = "meta-llama/Llama-2-70b-hf", 
   max_tokens = 256,
   temperature = 0.8,
   top_k = 60,

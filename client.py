@@ -3,7 +3,11 @@ import speech_recognition as sr
 
 # 1. Setup socket connection with server
 
+<<<<<<< HEAD
 HOST = '192.0.0.2'  # Replace with server's IP address
+=======
+HOST = '10.32.80.163'  # Replace with server's IP address
+>>>>>>> ce16dee77483ee67610ad2e1d0cd8885aa58d8c2
 PORT = 12345        # Same port as server
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((HOST, PORT))
