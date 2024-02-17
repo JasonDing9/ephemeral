@@ -73,5 +73,5 @@ Conversation: {context}
 
     return json.dumps(json_result)
 
-retrieve_link("Ayushi said: Can everyone open the doccumentation of FAISS for our project?")
-retrieve_link("Jason said: Can everyone go to the discord server?")
+get_link("Ayushi said: Can everyone open the doccumentation of FAISS for our project?")
+get_link("Jason said: Can everyone go to the discord server?")
