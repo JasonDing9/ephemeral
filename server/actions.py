@@ -2,11 +2,14 @@ import together
 import os
 from rag import query
 from dotenv import load_dotenv
+from agents.mailing import draft_email
+import json
 
 load_dotenv()
 together.api_key = os.environ['TOGETHER_API']
+USER_EMAIL = os.environ['USER_EMAIL']
 
-def send_email(context):
+def create_email(context):
     rag_context = query(context, "context-vectorstore.pkl")
     rag_contacts_context = query(context, "contacts-vectorstore.pkl")
     prompt = f"""
@@ -16,18 +19,18 @@ Example email #1:
 Conversation: Ayushi said: Yeah, I'll send an email to Parth for a one-on-one call.
 JSON Response:
 {{
-    'recipient': 'pgasawa@berkeley.edu',
-    'subject': 'One-on-One Chat',
-    'body': 'Hi Parth, \nDo you have time for a one-on-one chat tomorrow?\n Best,\n Ayushi',
+    "recipient": "pgasawa@berkeley.edu",
+    "subject": "One-on-One Chat",
+    "body": "Hi Parth,\\n\\nDo you have time for a one-on-one chat tomorrow?\\n\\nBest,\\nAyushi"
 }}
     
 Example email #2:
 Conversation: Jason said: I'll send an email to ask Arvind if the classification model has finished trainining.
 JSON Response:
 {{
-    'recipient': 'arvind.rajaraman@berkeley.edu',
-    'subject': 'Classification Model Inquiry',
-    'body': 'Hi Arvind, \nIs the classification model finished training?\n Best,\n Jason',
+    "recipient": "arvind.rajaraman@berkeley.edu",
+    "subject": "Classification Model Inquiry",
+    "body": "Hi Arvind,\\n\\nIs the classification model finished training?\\n\\nBest,\\nJason"
 }}
     
 ========
@@ -59,7 +62,10 @@ Conversation: {context}
         return -1
     json_result = response[response.find("{"):response.find("}")+1]
     print(json_result)
+    
+    json_result = json.loads(json_result)
+    draft_email(json_result["recipient"], json_result["subject"], json_result["body"], USER_EMAIL)
     return json_result
 
 
-send_email("Arvind said: I will send an email to Jason to remind him to finish the project by this Friday.")
+create_email("Jason said: I will send an email to Arvind to remind him to finish the project by this Friday.")

@@ -52,7 +52,7 @@ def create_message(sender_email, recipient_email, subject, body):
   message["subject"] = subject
   return message.as_string()
 
-def send_email(sender_email, recipient_email, subject, body):
+def draft_email(recipient_email, subject, body, sender_email):
   """
   Sends an email using the Gmail API.
   """
@@ -74,8 +74,8 @@ def send_email(sender_email, recipient_email, subject, body):
     print(f"Error drafting email: {e}")
 
 # Example usage
-sender_email = "jasonding@berkeley.edu"
-recipient_email = "arvind.rajaraman@berkeley.edu"
-subject = "Your Email Subject"
-body = "Your email message here."
-send_email(sender_email, recipient_email, subject, body)
+# sender_email = "jasonding@berkeley.edu"
+# recipient_email = "arvind.rajaraman@berkeley.edu"
+# subject = "Your Email Subject"
+# body = "Your email message here."
+# draft_email(sender_email, recipient_email, subject, body)
