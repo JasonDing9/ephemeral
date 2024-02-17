@@ -24,4 +24,11 @@ def ingestion():
     with open(f"contacts-vectorstore.pkl", "wb") as f:
         pickle.dump(vectorstore, f)
 
-ingestion()
+def query(file="contacts-vectorstore.pkl"):
+    with open(file, "rb") as f:
+        vectorstore = pickle.load(f)
+
+    docs = vectorstore.similarity_search("What is Jason's email?")
+    print(docs[0].page_content)
+
+query()
