@@ -4,7 +4,7 @@ import torch.nn.functional as F
 from sentence_transformers import SentenceTransformer
 from actions import create_email
 
-CLASSES = ["clarify", "email", "link", "schedule", "todos", "unknown"]
+CLASSES = ["clarify", "email", "link", "schedule", "unknown"]
 
 class ActionClassifier(torch.nn.Module):
     def __init__(self):
