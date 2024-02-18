@@ -6,6 +6,7 @@ from agents.scheduling import create_event
 from agents.clarify import search_google
 from dotenv import load_dotenv
 import subprocess
+from speak import speak
 
 load_dotenv()
 
@@ -36,3 +37,6 @@ def handle_response(response: str):
             send_notification(json_response['result'], "Quick Insight")
         else:
             send_notification(search_google(json_response['search_query']), "More Info")
+
+    elif json_response['action'] == 'assistant':
+        speak(json_response['answer'])

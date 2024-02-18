@@ -9,6 +9,7 @@ import os
 
 from actions.create_email import create_email
 from actions.clarify_search import clarify_search
+from actions.assistant import assistant
 
 CLASSES = ["clarify", "email", "link", "schedule", "unknown"]
 
@@ -44,6 +45,9 @@ classifier = ActionClassifier()
 classifier.load_state_dict(torch.load("action_classifier.pt"))
 
 def classify(text):
+    if 'assistant' in text.lower():
+        print("Classified as assistant.")
+        return assistant(text)
     input_ = torch.Tensor(encoder.encode([text]))
     output = classifier(input_)
     action = CLASSES[output.argmax(1)]
