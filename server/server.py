@@ -75,11 +75,14 @@ def start_server():
 
 def send_insights(send_client_socket):
     while True:
-        # data = send_client_socket.recv(1024)
-        # if not data:
-        #     break
+        data = send_client_socket.recv(1024)
+        if not data:
+            break
         
         results = get_suggestions()
+        print("-========START========-")
+        print("Results: " + results)
+        print("-=========END=========-")
         send_client_socket.sendall(results.encode('utf-8'))
 
 def shutdown_server():

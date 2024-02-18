@@ -17,7 +17,12 @@ def send_notification(message, title="Notification Title"):
     subprocess.run(["osascript", "-e", script])
 
 def handle_response(response: str):
-    json_response = json.loads(response)
+    try:
+        json_response = json.loads(response)
+    except:
+        print("JSON failed to load")
+        return
+        
     if json_response['action'] == 'email':
         draft_email(json_response['recipient'], json_response['subject'], json_response['body'], USER_EMAIL)
         send_notification("Email drafted to " + json_response['recipient'] + " regarding " + json_response["subject"], "Email Drafted")
@@ -35,8 +40,8 @@ def handle_response(response: str):
     elif json_response['action'] == 'clarify':
         if json_response['result'] != "NONE":
             send_notification(json_response['result'], "Quick Insight")
-        else:
-            send_notification(search_google(json_response['search_query']), "More Info")
+        # else:
+        #     send_notification(search_google(json_response['search_query']), "More Info")
 
     elif json_response['action'] == 'assistant':
         speak(json_response['answer'])
