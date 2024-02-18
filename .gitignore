@@ -15,3 +15,4 @@ server/actions/links-vectorstore.pkl
 server/test.py
 server/actions/central-log.txt
 actions/central-log.txt
+flask/data

@@ -34,10 +34,10 @@ def clarify_search(context):
     }}
 
     Example question #3:
-    Conversation: Parth said: Can we clarify who is resopnsible for developing the frontend?
+    Conversation: Parth said: What is the capital of Missouri?
     JSON Response:
     {{
-    "result": "According to the context, Arvind is responsible.",
+    "result": "The capital of Missouri is Jefferson City.",
     "search_query": "NONE"
     }}
 
