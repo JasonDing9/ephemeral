@@ -4,6 +4,7 @@ import sys
 import os
 from dotenv import load_dotenv
 from classifier import classify
+from actions.suggestions import get_suggestions
 
 load_dotenv()
 
@@ -74,10 +75,12 @@ def start_server():
 
 def send_insights(send_client_socket):
     while True:
-        data = send_client_socket.recv(1024)
-        if not data:
-            break
-        send_client_socket.sendall("test insight from the server".encode('utf-8'))
+        # data = send_client_socket.recv(1024)
+        # if not data:
+        #     break
+        
+        results = get_suggestions()
+        send_client_socket.sendall(results.encode('utf-8'))
 
 def shutdown_server():
     print("Shutting down the listening server.")

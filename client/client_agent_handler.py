@@ -40,3 +40,7 @@ def handle_response(response: str):
 
     elif json_response['action'] == 'assistant':
         speak(json_response['answer'])
+            
+    elif json_response['action'] == 'suggestion':
+        if json_response['suggestion'] != []:
+            send_notification("\n\n".join(json_response['suggestion']), "Suggestions")

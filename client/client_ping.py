@@ -20,8 +20,9 @@ def ping_for_insights():
         while True:
             print("Pinging for insights...")
             ping_socket.sendall("I want insights!".encode('utf-8'))
-            insight = ping_socket.recv(1024)
+            insight = ping_socket.recv(4096)
             print("Insight:", insight)
+            handle_response(insight)
             if not insight:
                 break
             time.sleep(10)
