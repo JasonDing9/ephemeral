@@ -25,7 +25,7 @@ Example #2:
 Conversation: Jason said: If you look in our Tree Hack's project GitHub repo, you can find the file.
 JSON Response:
 {{
-    "description": "Tree Hacks Project GitHub Rego",
+    "description": "Tree Hacks Project GitHub Repo",
     "link": "https://github.com/pgasawa/treehacks24-dev"
 }}
 
