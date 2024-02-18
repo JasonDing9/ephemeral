@@ -1,5 +1,6 @@
 from datetime import datetime
 import json
+import base64
 import os
 from agents.mailing import draft_email
 from agents.scheduling import create_event
@@ -26,7 +27,7 @@ def send_notification(message, title="Notification Title"):
 
 def handle_response(response: str):
     try:
-        json_response = json.loads(response)
+        json_response = json.loads(response[:response.find("}")+1])
     except:
         print("JSON failed to load")
         return
@@ -64,5 +65,19 @@ def handle_response(response: str):
             if json_response['suggestion'] != []:
                 json_response['creation_time'] = datetime.now().isoformat()
                 write_to_file(json_response)
+                
+        elif json_response['action'] == 'end':
+            bytes = bytes.fromhex(json_response['bytes'])
+            decodeit = open('image.png', 'wb') 
+            decodeit.write(base64.b64decode((bytes))) 
+            decodeit.close() 
+            
+            try:
+                # Open the image in the default image viewer
+                subprocess.run(["open", 'image.png'])
+            except FileNotFoundError:
+                print("Error: Default image viewer not found.")
+            
+            
     except:
         print("An error has occured in the handler.")

@@ -35,8 +35,8 @@ function Notification(props) {
 
     useEffect(() => {
       const updateTime = () => {
-        const timeDifference = new Date() - new Date(props.timestamp);
-        const newTimeString = timeAgo(new Date(props.timestamp));
+        const timestamp = new Date(Date.parse(props.timestamp));
+        const newTimeString = timeAgo(timestamp);
         setTimeString(newTimeString);
       };
   
@@ -60,7 +60,7 @@ function Notification(props) {
     return (
         <Card className='card' style={{'color': "#000", 'backgroundColor': "rgba(255, 255, 255, 0.8)"}}>
             <Card.Text  className={`cardHeader ${collapsed ? 'collapsed' : ''}`} onClick={() => setCollapsed(!collapsed)}>
-                {collapsed ? props.title : timeAgo(props.timestamp)}
+                {collapsed ? props.title : timeString}
 
                 <div style={{ float: 'right' }}>
                     {collapsed ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
