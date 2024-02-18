@@ -43,20 +43,25 @@ function Notification(props) {
   
       return () => clearInterval(intervalId);
     }, [props.timestamp]);
-
-    const timeDifference = new Date() - props.timestamp;
-    const importance = (timeDifference < 30000) ? "importance2" : "importance1";
+    
+    useEffect(() => {
+        const collapseTimeout = setTimeout(() => {
+          setCollapsed(true);
+        }, 5000);
+    
+        return () => clearTimeout(collapseTimeout);
+      }, []);
     
 
     return (
-        <Card className={`card ${importance}`}>
-            <Card.Header className="cardHeader" onClick={() => setCollapsed(!collapsed)}>
+        <Card className='card' bg="dark" style={{'color': "#fff"}}>
+            <Card.Text  className={`cardHeader ${collapsed ? 'collapsed' : ''}`} onClick={() => setCollapsed(!collapsed)}>
                 {collapsed ? props.title : timeAgo(props.timestamp)}
 
                 <div style={{ float: 'right' }}>
-                    {collapsed ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
+                    {collapsed ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
                 </div>
-            </Card.Header>
+            </Card.Text>
             {!collapsed && <Card.Body>
                 <Card.Title>{props.title}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{props.subtitle}</Card.Subtitle>
@@ -71,4 +76,3 @@ function Notification(props) {
 }
 
 export default Notification;
-

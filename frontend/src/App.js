@@ -24,7 +24,7 @@ function App() {
       const response = await axios.get('http://127.0.0.1:5000');
       const sortedData = response.data.sort((a, b) => b.creation_time - a.creation_time);
       const sortedNotifications = sortedData.filter(item => item.action !== "suggestion");
-      const sortedSuggestions = sortedData.filter(item => item.action === "suggestion");
+      const sortedSuggestions = sortedData.filter(item => item.action === "suggestion").slice(-1);
 
       setNotifications(sortedNotifications);
       setSuggestions(sortedSuggestions);
@@ -42,10 +42,10 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className='wrapper'>
       <Navbar className="bg-body-secondary">
         <Container>
-          <Navbar.Brand>App Name</Navbar.Brand>
+          <Navbar.Brand>Invisible Me</Navbar.Brand>
         </Container>
       </Navbar>
       <Container>
@@ -55,7 +55,7 @@ function App() {
             <br />
             <Row>
               <Col>
-                {notifications.map((item, index) => {
+                {notifications.reverse().map((item, index) => {
                   switch (item.action) {
                     case 'email':
                       return (
@@ -110,7 +110,7 @@ function App() {
               <SuggestionCard
                 key={index}
                 timestamp={item.creation_time}
-                suggestions={item.suggestions}
+                suggestions={item.suggestion}
               />
             ))}
           </Tab>

@@ -22,10 +22,10 @@ def listen():
         recognizer.adjust_for_ambient_noise(source)
         recognizer.pause_threshold = 0.5
         
-        # recognizer.energy_threshold = 4000
-        recognizer.dynamic_energy_threshold = True
-        recognizer.dynamic_energy_adjustment_damping = 0.15
-        recognizer.dynamic_energy_adjustment_ratio = 2.5
+        recognizer.energy_threshold = 1000
+        # recognizer.dynamic_energy_threshold = True
+        # recognizer.dynamic_energy_adjustment_damping = 0.15
+        # recognizer.dynamic_energy_adjustment_ratio = 2.5
         try: 
             while True:
                 print("Listening...")
