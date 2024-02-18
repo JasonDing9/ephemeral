@@ -42,7 +42,10 @@ def create_message(sender_email, recipient_email, subject, body):
   message = MIMEText(body, "plain")
 
   message["to"] = recipient_email
-  message["from"] = sender_email
+  if sender_email != "UNKNOWN":
+      message["from"] = sender_email
+#   else:
+#       message["from"] = ""
   message["subject"] = subject
   return message.as_string()
 
