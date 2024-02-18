@@ -37,7 +37,7 @@ JSON Response:
     "description": "Team sprint planning",
     "startTime": "{tomorrow_2pm}",
     duration": "60 min",
-    "attendees": ["arvind.rajaraman@berkeley.edu", "ayushi.batwara@berkeley.edu"]
+    "attendeeEmails": ["arvind.rajaraman@berkeley.edu", "ayushi.batwara@berkeley.edu"]
 }}
     
 ========

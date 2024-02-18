@@ -12,7 +12,7 @@ def create_email(context):
     rag_context = query(context, "context-vectorstore.pkl")
     rag_contacts_context = query(context, "contacts-vectorstore.pkl")
     prompt = f"""
-You are an AI assistant for helping to write emails. Given the following meeting conversation, please write a one or two sentence email given the following conversation. Please just return a JSON response. If you do not know the reciepient's email address, put "UNKNOWN" in with quotes the recipient field. For the body, please use display \\n characters and not a new line.
+You are an AI assistant for helping to write emails. Given the following meeting conversation, please write a one or two sentence email given the following conversation. Please just return a JSON response. If you do not know the reciepient's email address, put "UNKNOWN" in with quotes the recipient field. For the body, please use \\n characters and not a new line.
     
 Example email #1:
 Conversation: Ayushi said: Yeah, I'll send an email to Parth for a one-on-one call.
@@ -48,29 +48,36 @@ JSON Response:
     
 Conversation: {context}
     """
-    
-    output = together.Complete.create(
-        prompt = f"[INST] {prompt} [/INST]",
-        model = "meta-llama/Llama-2-70b-chat-hf", 
-        max_tokens = 512,
-        temperature = 0.7,
-        top_k = 50,
-        top_p = 0.7,
-        repetition_penalty = 1,
-        stop = ["[INST]"],
-        safety_model = "",
-    )
+    success = False
+    for i in range(3):
+        output = together.Complete.create(
+            prompt = f"[INST] {prompt} [/INST]",
+            model = "meta-llama/Llama-2-70b-chat-hf", 
+            max_tokens = 512,
+            temperature = 0.7,
+            top_k = 50,
+            top_p = 0.7,
+            repetition_penalty = 1,
+            stop = ["[INST]"],
+            safety_model = "",
+        )
 
-    # print generated text
-    response = output['output']['choices'][0]['text']
-    if not response.find("{") or not response.find("}"):
-        return -1
-    json_result = response[response.find("{"):response.find("}")+1]
-    print(json_result)
-    
-    json_result = json.loads(json_result)
-    json_result["action"] = "email"
-    # draft_email(json_result["recipient"], json_result["subject"], json_result["body"], USER_EMAIL)
+        # print generated text
+        response = output['output']['choices'][0]['text']
+        if not response.find("{") or not response.find("}"):
+            return -1
+        json_result = response[response.find("{"):response.find("}")+1]
+        print(json_result)
+        
+        try:
+            json_result = json.loads(json_result)
+            json_result["action"] = "email"
+            success = True
+        except:
+            pass
+        
+        if success:
+            break
 
     return json.dumps(json_result)
 

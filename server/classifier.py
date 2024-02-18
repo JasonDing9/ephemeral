@@ -55,10 +55,6 @@ def classify(text):
         return clarify_search(text)
     elif action == 'schedule':
         return create_event(text)
-
-# classify("I will send an email to Arvind to remind him to finish the project by this Friday.")
-# classify("Can everyone open the doccumentation of FAISS for our project?")
-# classify("Ayushi said: Let's all meet tomorrow 2 PM to discuss sprint planning for this project")
     elif action == 'link':
         return get_link(text)
 
