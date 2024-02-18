@@ -1,0 +1,5 @@
+Ayushi said: Parth, I've been thinking about the new functionality we discussed for the app. Do you think it's worth implementing?
+Parth said: I'm not sure. On one hand, it could greatly enhance user experience. But on the other hand, it might add complexity and delay the release.
+Ayushi said: Exactly. It's a tough call. Maybe we should run some user tests to see if it's something they actually want.
+Parth said: That's a good idea, but it could also take time and resources. And what if the feedback is mixed?
+Ayushi said: True. We don't want to invest in something that won't be well-received. But at the same time, we don't want to miss out on an opportunity to innovate.
