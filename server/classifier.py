@@ -9,6 +9,7 @@ import os
 
 from actions.create_email import create_email
 from actions.clarify_search import clarify_search
+from actions.assistant import assistant
 
 CLASSES = ["clarify", "email", "link", "schedule", "unknown"]
 
@@ -44,6 +45,9 @@ classifier = ActionClassifier()
 classifier.load_state_dict(torch.load("action_classifier.pt"))
 
 def classify(text):
+    if 'assistant' in text.lower():
+        print("Classified as assistant.")
+        return assistant(text)
     input_ = torch.Tensor(encoder.encode([text]))
     output = classifier(input_)
     action = CLASSES[output.argmax(1)]
@@ -55,10 +59,6 @@ def classify(text):
         return clarify_search(text)
     elif action == 'schedule':
         return create_event(text)
-
-# classify("I will send an email to Arvind to remind him to finish the project by this Friday.")
-# classify("Can everyone open the doccumentation of FAISS for our project?")
-# classify("Ayushi said: Let's all meet tomorrow 2 PM to discuss sprint planning for this project")
     elif action == 'link':
         return get_link(text)
 

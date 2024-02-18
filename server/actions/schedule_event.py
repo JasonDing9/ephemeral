@@ -37,7 +37,7 @@ JSON Response:
     "description": "Team sprint planning",
     "startTime": "{tomorrow_2pm}",
     duration": "60 min",
-    "attendees": ["arvind.rajaraman@berkeley.edu", "ayushi.batwara@berkeley.edu"]
+    "attendeeEmails": ["arvind.rajaraman@berkeley.edu", "ayushi.batwara@berkeley.edu"]
 }}
     
 ========
@@ -47,30 +47,37 @@ Here is everyone's contact information:
     
 Conversation: {context}
     """
-    
-    print(prompt)
-    print("===============")
-    
-    output = together.Complete.create(
-        prompt = f"[INST] {prompt} [/INST]",
-        model = "meta-llama/Llama-2-70b-chat-hf", 
-        max_tokens = 2048,
-        temperature = 0.7,
-        top_k = 50,
-        top_p = 0.7,
-        repetition_penalty = 1,
-        stop = ["[INST]"],
-        safety_model = "",
-    )
+    success = False
+    json_result = None
+    for i in range(3):
+        try:
+            output = together.Complete.create(
+                prompt = f"[INST] {prompt} [/INST]",
+                model = "meta-llama/Llama-2-70b-chat-hf", 
+                max_tokens = 2048,
+                temperature = 0.7,
+                top_k = 50,
+                top_p = 0.7,
+                repetition_penalty = 1,
+                stop = ["[INST]"],
+                safety_model = "",
+            )
 
-    # print generated text
-    response = output['output']['choices'][0]['text']
-    if not response.find("{") or not response.find("}"):
-        return -1
-    json_result = response[response.find("{"):response.find("}")+1]
-    print(json_result)
-    
-    json_result = json.loads(json_result)
-    json_result["action"] = "schedule"
+            # print generated text
+            response = output['output']['choices'][0]['text']
+            if response.find("{") == -1 or response.find("}") == -1:
+                raise Exception("Sorry, no JSON object to be found")
+            json_result = response[response.find("{"):response.find("}")+1]
+            print(json_result)
+            
+            json_result = json.loads(json_result)
+            json_result["action"] = "schedule"
+            success = True
+        except:
+            print("An error occured. Retrying...")
+            pass 
+        
+        if success:
+            break
 
     return json.dumps(json_result)

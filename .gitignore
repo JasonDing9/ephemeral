@@ -12,3 +12,6 @@ server/actions/contacts-vectorstore.pkl
 server/actions/context-vectorstore.pkl
 server/actions/links-vectorstore.pkl
 .DS_Store
+server/test.py
+server/actions/central-log.txt
+actions/central-log.txt
