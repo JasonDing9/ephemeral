@@ -25,7 +25,7 @@ def handle_response(response: str):
         send_notification(f"Does this link help: {json_response['link']}", json_response["description"])
         
     elif json_response['action'] == 'schedule':
-        link = create_event(json_response['attendees'], json_response['startTime'], json_response['summary'], json_response["description"])
+        link = create_event(json_response['attendeeEmails'], json_response['startTime'], json_response['summary'], json_response["description"])
         start_time = datetime.strptime(json_response["startTime"], "%Y-%m-%dT%H:%M:%S")
         start_time = start_time.strftime("%b %d at %I:%M%p")
         send_notification(f"{json_response['summary']} + scheduled at {start_time}. {link}", "Event Scheduled")

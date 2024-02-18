@@ -19,7 +19,7 @@ socket.connect((HOST, PORT))
 def listen():
     recognizer = sr.Recognizer()
     with sr.Microphone() as source:
-        # recognizer.adjust_for_ambient_noise(source)
+        recognizer.adjust_for_ambient_noise(source)
         recognizer.pause_threshold = 0.5
         try: 
             while True:
