@@ -14,7 +14,7 @@ def get_suggestions():
     
     rag_context = query(recent_central_log, "context-vectorstore.pkl")
     prompt = f"""
-You are an AI assistant who helps creates suggestions for topics, additional discussion questions, and answers for the current conversation. Begin your suggestions with "AI assisstant said: ". Given the following meeting conversation, please give suggestions for how to continue or answer the conversation. Please just return a JSON response. Put each possible suggestion in an array, and make sure all arguments in the JSON response is in quotations. If you do not think you have any solid suggestions, put an empty list in the JSON's suggestion field.
+You are an AI assistant who helps creates suggestions for topics, additional discussion questions, and answers for the current conversation. Begin your suggestions with "AI assisstant said: ". Given the following meeting conversation, please give two to three suggestions for how to continue or answer the conversation. Please just return a JSON response. Put each possible suggestion in an array, and make sure all arguments in the JSON response is in quotations. If you do not think you have any solid suggestions, put an empty list in the JSON's suggestion field.
     
 Example #1:
 Conversation:
@@ -36,13 +36,13 @@ Jason said: I suppose that's true. Have any ideas?
 Parth said: I'm don't know.
 JSON Response:
 {{
-    "suggestion": ["AI Assisstant said: What about a project for meetings that will listen to the audio use an ML agent to automatically do common tasks such as sending emails or scheduling meetings for higher productivity.", "AI Assisstant said: One idea could be to create an agent that can automatically carry operations on your OS such as opening files or controlling your music."]
+    "suggestion": ["AI Assisstant said: What about a project for meetings that will listen to the audio use an ML agent to automatically do common tasks such as sending emails or scheduling meetings for higher productivity.", "AI Assisstant said: One idea could be to create an agent that can automatically carry operations on your OS such as opening files or controlling your music.", "AI Assisstant said: What if you all thought about a specific category such as education, health, or gaming and went from there? Is there any specific topics that everyone is interest in?"]
 }}
 
 Example #3:
 Conversation:
 {{
-    "suggestion": ["AI Assisstant said: Hello, how is everyone doing today?"]
+    "suggestion": ["AI Assisstant said: How is everyone doing today?", "AI Assistant said: To break the ice, share one thing you are looking forward to this week."]
 }}
     
 ========
@@ -52,31 +52,33 @@ Conversation:
 Conversation: {recent_central_log}
     """
     success = False
+    json_result = None
     for i in range(3):
-        output = together.Complete.create(
-            prompt = f"[INST] {prompt} [/INST]",
-            model = "meta-llama/Llama-2-70b-chat-hf", 
-            max_tokens = 1024,
-            temperature = 0.7,
-            top_k = 50,
-            top_p = 0.7,
-            repetition_penalty = 1,
-            stop = ["[INST]"],
-            safety_model = "",
-        )
-
-        # print generated text
-        response = output['output']['choices'][0]['text']
-        if not response.find("{") or not response.find("}"):
-            return -1
-        json_result = response[response.find("{"):response.find("}")+1]
-        print(json_result)
-        
         try:
+            output = together.Complete.create(
+                prompt = f"[INST] {prompt} [/INST]",
+                model = "meta-llama/Llama-2-70b-chat-hf", 
+                max_tokens = 1024,
+                temperature = 0.7,
+                top_k = 50,
+                top_p = 0.7,
+                repetition_penalty = 1,
+                stop = ["[INST]"],
+                safety_model = "",
+            )
+
+            # print generated text
+            response = output['output']['choices'][0]['text']
+            if response.find("{") == -1 or response.find("}") == -1:
+                raise Exception("Sorry, no JSON object to be found")
+            json_result = response[response.find("{"):response.find("}")+1]
+            print(json_result)
+            
             json_result = json.loads(json_result)
             json_result["action"] = "suggestion"
             success = True
         except:
+            print("An error occured. Retrying...")
             pass
         
         if success:

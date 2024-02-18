@@ -12,7 +12,7 @@ def assistant(question: str):
     recent_central_log = "".join(log.readlines()[-4:])
     
     prompt = f"""
-You are an AI assistant who helps answers questions that arise in a conversation when asked. Given the following meeting conversation and question, please give an answer to the questionPlease just return a JSON response. Make sure all arguments in the JSON response is in quotations. If you do not think you have any solid suggestions, please put in the answer field Sorry, I'm not sure.
+You are an AI assistant who helps answers questions that arise in a conversation when asked. Please give an answer to the question as a JSON response. Make sure all arguments in the JSON response are in quotations. If you do not think you have an answer, please say you're not sure in the answer field.
     
 Example #1:
 Prior Conversation:
@@ -29,8 +29,8 @@ Example #2:
 Prior Conversation: 
 Parth said: What project related to AI agents do you think we could work on for our Tree Hack's project?
 Jason said: What about a project that can help city governments connect with other cities that have faced similar governence problems?
-Parth said: Hmm, I think that might work, but I'm not sure if I would be that interested in the project and I'm not sure if that project would be very impressive.
-Jason said: I suppose that's true. Have any ideas?
+Parth said: Hmm, I think that might work, but I'm not sure if I would be that interested in the project.
+Jason said: That's fair. Have any ideas?
 Question: Parth said: I'm don't know. Assistant, do you have any ideas?
 JSON Response:
 {{
@@ -49,7 +49,7 @@ JSON Response:
         try:
             output = together.Complete.create(
                 prompt = f"[INST] {prompt} [/INST]",
-                model = "meta-llama/Llama-2-70b-chat-hf", 
+                model = "mistralai/Mistral-7B-Instruct-v0.1", 
                 max_tokens = 1024,
                 temperature = 0.7,
                 top_k = 50,
@@ -61,7 +61,7 @@ JSON Response:
 
             # print generated text
             response = output['output']['choices'][0]['text']
-            if not response.find("{") or not response.find("}"):
+            if response.find("{") == -1 or response.find("}") == -1:
                 raise Exception("Sorry, no JSON object to be found")
             json_result = response[response.find("{"):response.find("}")+1]
             print(json_result)
@@ -69,7 +69,8 @@ JSON Response:
             json_result = json.loads(json_result)
             json_result["action"] = "assistant"
             success = True
-        except:
+        except Exception as e:
+            print(e)
             print("An error occured. Retrying...")
             pass 
         
