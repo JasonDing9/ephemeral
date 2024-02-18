@@ -48,6 +48,22 @@ def classify(text):
     if 'assistant' in text.lower():
         print("Classified as assistant.")
         return assistant(text)
+    elif 'send' in text.lower() and 'email' in text.lower():
+        print("Classified as email.")
+        return create_email(text)
+    elif 'write' in text.lower() and 'email' in text.lower():
+        print("Classified as email.")
+        return create_email(text)
+    elif 'schedule' in text.lower():
+        print("Classified as schedule.")
+        return create_event(text)
+    elif 'set' in text.lower() and 'up' in text.lower() and 'meeting' in text.lower():
+        print("Classified as schedule.")
+        return create_event(text)
+    elif 'open up' in text.lower():
+        print("Classified as link.")
+        return get_link(text)
+    
     input_ = torch.Tensor(encoder.encode([text]))
     output = classifier(input_)
     action = CLASSES[output.argmax(1)]
@@ -58,7 +74,8 @@ def classify(text):
     elif action == 'clarify':
         return clarify_search(text)
     elif action == 'schedule':
-        return create_event(text)
+        return None
+        # return create_event(text)
     elif action == 'link':
         return get_link(text)
 
