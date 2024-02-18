@@ -8,7 +8,7 @@ function OpenLinkCard(props) {
             timestamp={props.timestamp}
             title={title}
             subtitle=""
-            body="We think the following link may be relevant to your discussion!"
+            text="We think the following link may be relevant to your discussion!"
             links={[{url: props.url, name: "Open"}]}
         />
     );
