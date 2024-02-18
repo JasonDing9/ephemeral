@@ -2,14 +2,12 @@ import together
 import os
 from dotenv import load_dotenv
 import json
-import time
 
 load_dotenv()
 together.api_key = os.environ['TOGETHER_API']
 USER_EMAIL = os.environ['USER_EMAIL']
 
 def assistant(question: str):
-    start = time.time()
     log = open("actions/central-log.txt", "r")
     recent_central_log = "".join(log.readlines()[-4:])
     
@@ -79,5 +77,4 @@ JSON Response:
         if success:
             break
 
-    print(f"Took {time.time() - start} seconds")
     return json.dumps(json_result)
