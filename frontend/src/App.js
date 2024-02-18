@@ -44,7 +44,7 @@ function App() {
   }, []);
 
   return (
-    <div className='wrapper' style={{'backgroundImage': `url(${backgroundImage})`, 'height': '100%', 'filter': 'invert(100%) hue-rotate(200deg) saturate(60%)'}}>
+    <div className='wrapper' style={{'backgroundImage': `url(${backgroundImage})`, 'height': '100%', 'minHeight': "100vh", 'filter': 'invert(100%) hue-rotate(200deg) saturate(60%)'}}>
       <Navbar className="bg-body-secondary">
         <Container>
           <Navbar.Brand>Ephemeral</Navbar.Brand>
