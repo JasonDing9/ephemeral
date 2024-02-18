@@ -42,7 +42,9 @@ def transcribe(recognizer, audio):
         print("=============")
         socket.sendall(transcribed_words.encode("utf-8"))
         response = socket.recv(1024).decode('utf-8')
-        print("HERE I AM TRYING TO RECEIVE DATA: " + response)
+        if not response:
+            return
+        print("Data Received: " + response)
         if response != "No results":
             handle_response(response)
     except sr.UnknownValueError:
