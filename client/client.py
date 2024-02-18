@@ -12,8 +12,6 @@ NAME = os.environ['NAME']
 HOST = os.environ["HOST"]
 PORT = int(os.environ["SERVER_LISTEN_PORT"])
 
-FILE = open("../server/actions/central-log.txt", "a")
-
 socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 socket.connect((HOST, PORT))
 
@@ -39,7 +37,6 @@ def transcribe(recognizer, audio):
         transcribed_words = recognizer.recognize_whisper(audio)
         end = timer()
         transcribed_words = f"{NAME} said: {transcribed_words}"
-        FILE.write(transcribed_words + "\n")
         print("Time elapsed:", end - start)
         print(transcribed_words)
         print("=============")

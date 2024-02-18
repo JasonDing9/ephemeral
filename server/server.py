@@ -24,7 +24,7 @@ def handle_client(client_socket):
             break  # Break the loop if no data is received
         print(f"Received data from {client_socket.getpeername()}: {data.decode('utf-8')}")
         data = data.decode('utf-8')
-    
+        FILE.write(data)
         json_result = classify(data)
         FILE.write(data)
         if json_result:
