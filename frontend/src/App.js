@@ -47,7 +47,7 @@ function App() {
     <div className='wrapper' style={{'backgroundImage': `url(${backgroundImage})`, 'height': '100%', 'filter': 'invert(100%) hue-rotate(200deg) saturate(60%)'}}>
       <Navbar className="bg-body-secondary">
         <Container>
-          <Navbar.Brand>Invisible Me</Navbar.Brand>
+          <Navbar.Brand>Ephemeral</Navbar.Brand>
         </Container>
       </Navbar>
       <Container>
