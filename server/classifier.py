@@ -80,4 +80,4 @@ def classify(text):
         return None
         # return create_event(text)
     elif action == 'link':
-        return get_link(text)
+        return None
