@@ -53,7 +53,7 @@ def transcribe(recognizer, audio):
         if not response:
             return
         print("Data Received: " + response)
-        if response != "No results":
+        if response != "No results" or response != None:
             handle_response(response)
     except sr.UnknownValueError:
         print("Whisper Speech Recognition could not understand audio")
