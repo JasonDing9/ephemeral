@@ -68,7 +68,7 @@ def clarify_search(context):
 
             # print generated text
             response = output['output']['choices'][0]['text']
-            if not response.find("{") or not response.find("}"):
+            if response.find("{") == -1 or response.find("}") == -1:
                 raise Exception("Sorry, no JSON object to be found")
             json_result = response[response.find("{"):response.find("}")+1]
             print(json_result)
