@@ -55,8 +55,8 @@ def handle_response(response: str):
         if json_response['result'] != "NONE":
             write_to_file(json_response)
             # send_notification(json_response['result'], "Quick Insight")
-        else:
-            write_to_file(json_response)
+        # else:
+            # write_to_file(json_response)
             # send_notification(search_google(json_response['search_query']), "More Info")
 
     elif json_response['action'] == 'assistant':
