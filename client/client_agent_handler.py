@@ -34,11 +34,13 @@ def handle_response(response: str):
         
     if json_response['action'] == 'email':
         draft_email(json_response['recipient'], json_response['subject'], json_response['body'], USER_EMAIL)
+        json_response['creation_time'] = datetime.now().isoformat()
         write_to_file(json_response)
         # send_notification("Email drafted to " + json_response['recipient'] + " regarding " + json_response["subject"], "Email Drafted")
 
     elif json_response['action'] == 'link':
         if json_response['link'] != "":
+            json_response['creation_time'] = datetime.now().isoformat()
             write_to_file(json_response)
             # send_notification(f"Does this link help: {json_response['link']}", json_response["description"])
         
@@ -48,11 +50,13 @@ def handle_response(response: str):
         start_time = start_time.strftime("%b %d at %I:%M%p")
         json_response['start_time'] = start_time
         json_response["link"] = link
+        json_response['creation_time'] = datetime.now().isoformat()
         write_to_file(json_response)
         # send_notification(f"{json_response['summary']} + scheduled at {start_time}. {link}", "Event Scheduled")
 
     elif json_response['action'] == 'clarify':
         if json_response['result'] != "NONE":
+            json_response['creation_time'] = datetime.now().isoformat()
             write_to_file(json_response)
             # send_notification(json_response['result'], "Quick Insight")
         # else:
@@ -64,5 +68,6 @@ def handle_response(response: str):
             
     elif json_response['action'] == 'suggestion':
         if json_response['suggestion'] != []:
+            json_response['creation_time'] = datetime.now().isoformat()
             write_to_file(json_response)
             # send_notification("\n\n".join(json_response['suggestion']), "Suggestions")
