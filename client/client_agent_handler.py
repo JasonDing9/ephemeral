@@ -26,6 +26,6 @@ def handle_response(response: str):
 
     elif json_response['action'] == 'clarify':
         if json_response['result'] != "NONE":
-            send_notification(json_response['response'], "Quick Inisght")
+            send_notification(json_response['result'], "Quick Insight")
         else:
             send_notification(search_google(json_response['search_query']), "More Info")
