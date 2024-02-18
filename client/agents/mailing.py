@@ -63,9 +63,11 @@ def draft_email(recipient_email, subject, body, sender_email):
     # Uncomment below for sending
     # message = service.users().messages().send(userId="me", body=raw_message).execute()
     draft = service.users().drafts().create(userId="me", body=raw_message).execute()
+<<<<<<< HEAD
+=======
     draft_link = f"https://mail.google.com/mail/u/0/#drafts/{draft['id']}"
+>>>>>>> 12584bcf598d6f6cee1029ab3de0cb80ae6043fc
     print(f"Draft create successfully! Draft ID: {draft['id']}")
-    return draft_link
   except Exception as e:
     print(f"Error drafting email: {e}")
 
