@@ -33,7 +33,8 @@ def handle_response(response: str):
     notification = {}
         
     if json_response['action'] == 'email':
-        draft_email(json_response['recipient'], json_response['subject'], json_response['body'], USER_EMAIL)
+        link = draft_email(json_response['recipient'], json_response['subject'], json_response['body'], USER_EMAIL)
+        json_response["link"] = link
         write_to_file(json_response)
         # send_notification("Email drafted to " + json_response['recipient'] + " regarding " + json_response["subject"], "Email Drafted")
 
@@ -47,6 +48,7 @@ def handle_response(response: str):
         start_time = datetime.strptime(json_response["startTime"], "%Y-%m-%dT%H:%M:%S")
         start_time = start_time.strftime("%b %d at %I:%M%p")
         json_response['start_time'] = start_time
+        json_response["link"] = link
         write_to_file(json_response)
         # send_notification(f"{json_response['summary']} + scheduled at {start_time}. {link}", "Event Scheduled")
 
