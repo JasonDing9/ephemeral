@@ -9,7 +9,6 @@ together.api_key = os.environ['TOGETHER_API']
 USER_EMAIL = os.environ['USER_EMAIL']
 
 def get_link(context):
-    rag_context = query(context, "context-vectorstore.pkl")
     rag_links_context = query(context, "links-vectorstore.pkl")
     prompt = f"""
 You are an AI assistant to help retrieve relevent link. Given the following meeting conversation, please determine if there is a corresponding link related to it. Please just return a JSON response and make sure there are quotes around the link. If there is no closely related link to the conversation, make sure to not falsely return a link. Instead, please return an empty string for the link. 
@@ -39,8 +38,6 @@ JSON Response:
 }}
     
 ========
-{rag_context}
-
 Potential Relevent Links:
 {rag_links_context}
 ========

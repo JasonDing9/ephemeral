@@ -9,7 +9,6 @@ together.api_key = os.environ['TOGETHER_API']
 USER_EMAIL = os.environ['USER_EMAIL']
 
 def create_email(context):
-    rag_context = query(context, "context-vectorstore.pkl")
     rag_contacts_context = query(context, "contacts-vectorstore.pkl")
     prompt = f"""
 You are an AI assistant for helping to write emails. Given the following meeting conversation, please write a one or two sentence email given the following conversation. Please just return a JSON response. If you do not know the reciepient's email address, put "UNKNOWN" in with quotes the recipient field. For the body, please use \\n characters and not a new line.
@@ -42,7 +41,6 @@ JSON Response:
 }}
     
 ========
-{rag_context}
 {rag_contacts_context}
 ========
     

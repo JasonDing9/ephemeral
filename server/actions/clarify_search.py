@@ -9,7 +9,6 @@ together.api_key = os.environ['TOGETHER_API']
 USER_EMAIL = os.environ['USER_EMAIL']
 
 def clarify_search(context):
-    rag_context = query(context, "context-vectorstore.pkl")
     rag_contacts_context = query(context, "contacts-vectorstore.pkl")
     prompt = f"""
     You are an AI assistant who will help answer a question. 
@@ -43,7 +42,6 @@ def clarify_search(context):
     }}
 
     ========
-    {rag_context}
     {rag_contacts_context}
     ========
 

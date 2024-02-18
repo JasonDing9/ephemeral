@@ -12,7 +12,6 @@ def get_suggestions():
     log = open("actions/central-log.txt", "r")
     recent_central_log = "".join(log.readlines()[-5:])
     
-    rag_context = query(recent_central_log, "context-vectorstore.pkl")
     prompt = f"""
 You are an AI assistant who helps creates suggestions for topics, additional discussion questions, and answers for the current conversation. Begin your suggestions with "AI assisstant said: ". Given the following meeting conversation, please give two to three suggestions for how to continue or answer the conversation. Please just return a JSON response. Put each possible suggestion in an array, and make sure all arguments in the JSON response is in quotations. If you do not think you have any solid suggestions, put an empty list in the JSON's suggestion field.
     
@@ -45,8 +44,6 @@ Conversation:
     "suggestion": ["AI Assisstant said: How is everyone doing today?", "AI Assistant said: To break the ice, share one thing you are looking forward to this week."]
 }}
     
-========
-{rag_context}
 ========
     
 Conversation: {recent_central_log}

@@ -12,7 +12,6 @@ NAME = os.environ['NAME']
 HOST = os.environ["HOST"]
 PORT = int(os.environ["SERVER_LISTEN_PORT"])
 
-
 action_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 action_socket.connect((HOST, PORT))
 
