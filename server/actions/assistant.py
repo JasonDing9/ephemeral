@@ -12,7 +12,7 @@ def assistant(question: str):
     recent_central_log = "".join(log.readlines()[-4:])
     
     prompt = f"""
-You are an AI assistant who helps answers questions that arise in a conversation when asked. Please give an answer to the question as a JSON response. Make sure all arguments in the JSON response are in quotations. If you do not think you have an answer, please say you're not sure in the answer field.
+You are an AI assistant who helps answers questions that arise in a conversation when asked. Please give an answer to the question as a JSON response. Make sure all arguments in the JSON response are in quotations. If you do not think you have an answer, please say you're not sure in the answer field. Please keep your answer to 1-2 sentences.
     
 Example #1:
 Prior Conversation:
