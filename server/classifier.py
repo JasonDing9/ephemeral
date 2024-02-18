@@ -57,6 +57,9 @@ def classify(text):
     elif 'schedule' in text.lower():
         print("Classified as schedule.")
         return create_event(text)
+    elif 'set' in text.lower() and 'up' in text.lower() and 'meeting' in text.lower():
+        print("Classified as schedule.")
+        return create_event(text)
     elif 'open up' in text.lower():
         print("Classified as link.")
         return get_link(text)
@@ -71,7 +74,8 @@ def classify(text):
     elif action == 'clarify':
         return clarify_search(text)
     elif action == 'schedule':
-        return create_event(text)
+        return None
+        # return create_event(text)
     elif action == 'link':
         return get_link(text)
 
