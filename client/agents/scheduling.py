@@ -37,6 +37,7 @@ def get_credentials():
 def create_event(attendeeEmails: List[str], startTime: str, title: str, description: str):
     creds = Credentials.from_authorized_user_info(json.loads(get_credentials()), SCOPES)
     service = build('calendar', 'v3', credentials=creds)
+    events = service.events()
 
     start_datetime = datetime.fromisoformat(startTime)
 
@@ -57,5 +58,7 @@ def create_event(attendeeEmails: List[str], startTime: str, title: str, descript
         ],
     }
     event = service.events().insert(calendarId='primary', body=event).execute()
+    event_link = events.get(calendarId='primary', eventId=event['id']).execute()['htmlLink']
+    return event_link
 
 # send_cal_invite(["arvind.rajaraman@berkeley.edu"], "2024-02-17T12:00:00")
