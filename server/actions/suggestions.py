@@ -14,17 +14,17 @@ def get_suggestions():
     
     rag_context = query(recent_central_log, "context-vectorstore.pkl")
     prompt = f"""
-You are an AI assistant who helps creates suggestions for topics, additional discussion questions, and answers for the current conversation. Begin your suggestions with "AI assisstant said: ". Given the following meeting conversation, please give suggestions for how to continue or answer the conversation. Please just return a JSON response. Put each possible suggestion in an array, and make sure all arguments in the JSON response is in quotations. If you do not thing you have any solid suggestions, put an empty list in the JSON's suggestion field.
+You are an AI assistant who helps creates suggestions for topics, additional discussion questions, and answers for the current conversation. Begin your suggestions with "AI assisstant said: ". Given the following meeting conversation, please give suggestions for how to continue or answer the conversation. Please just return a JSON response. Put each possible suggestion in an array, and make sure all arguments in the JSON response is in quotations. If you do not think you have any solid suggestions, put an empty list in the JSON's suggestion field.
     
 Example #1:
 Conversation:
 Ayushi said: Do you know how multithreading works?
 Jason said: Yeah, multi threading is the processor can switch between different threads and execute several threads at the same time.
 Ayushi said: Is multi threading always better than single threading?
-Jason said: I think multi threading is typically better in the right cases, but not always. What do you think, AI assisstant?
+Jason said: I think multi threading is typically better in the right cases, but not always.
 JSON Response:
 {{
-    "suggestion": ["AI Assisstant said: What Jason is true. To go more into depth, multi threading is typically better when tasks can be executed concurrently and not need to wait for each other. If tasks cannot be executed concurrently, then the additional overhead from multi threading may make it slower than single threading.", "AI Assisstant said: In what cases do you think multi threading would be slower than single threading? Think about concepts such as critical sections and synchronization."]
+    "suggestion": ["AI Assisstant said: What Jason said is true. To go more into depth, multi threading is typically better when tasks can be executed concurrently and not need to wait for each other. If tasks cannot be executed concurrently, then the additional overhead from multi threading may make it slower than single threading.", "AI Assisstant said: In what cases do you think multi threading would be slower than single threading? Think about concepts such as critical sections and synchronization."]
 }}
     
 Example #2:
