@@ -19,19 +19,27 @@ def clarify_search(context):
     If you are unable to answer the question based on the context provided, please just return NONE for result and a corresponding Google search query for the answer.
     
     Example question #1:
-    Conversation: Ayushi said: When is the project due?
+    Conversation: Ayushi said: I'm not familiar with cyber attacks - can you explain it more?
     JSON Response:
     {{
-    "result": "It is due on December 18, 2024.",
+    "result": "A cyber attack is a malicious and intentional attempt by an individual, group, or organization to exploit vulnerabilities in computer systems, networks, or digital infrastructure to compromise data, disrupt operations, or gain unauthorized access. Cyber attacks encompass a wide range of techniques, including malware deployment, phishing, denial-of-service attacks, and other methods aimed at compromising the confidentiality, integrity, or availability of digital assets.",
     "search_query": "NONE"
     }}
 
-    Example question #1:
-    Conversation: Jason said: What do you mean by multithreading?
+    Example question #2:
+    Conversation: Jason said: What is the current stock price of Apple?
     JSON Response:
     {{
     "result": "NONE",
-    "search_query": "multithreading definition"
+    "search_query": "Apple stock price"
+    }}
+
+    Example question #3:
+    Conversation: Parth said: Can we clarify who is resopnsible for developing the frontend?
+    JSON Response:
+    {{
+    "result": "According to the context, Arvind is responsible.",
+    "search_query": "NONE"
     }}
 
     ========
