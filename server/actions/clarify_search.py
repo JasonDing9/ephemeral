@@ -68,8 +68,6 @@ def clarify_search(context):
     except:
         return 
     
-    json_result = json.loads(json_result)
-
     json_result['action'] = 'clarify'
 
     return json.dumps(json_result)
