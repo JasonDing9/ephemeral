@@ -34,17 +34,17 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className='wrapper'>
       <Navbar className="bg-body-secondary">
         <Container>
-          <Navbar.Brand>App Name</Navbar.Brand>
+          <Navbar.Brand>Invisible Me</Navbar.Brand>
         </Container>
       </Navbar>
       <Container>
         <br />
         <Row>
           <Col>
-            {notifications.map((item, index) => {
+            {notifications.reverse().map((item, index) => {
               switch (item.action) {
                 case 'email':
                   return (

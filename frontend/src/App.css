@@ -1,24 +1,72 @@
-.collapsed {
-  display: none;
+/* .card {
+  margin-bottom: 20px;
+  transition: opacity 0.5s;
+  opacity: 0;
+  max-height: 500px; 
+  overflow: hidden;
+  transition: opacity 0.5s ease-in-out, max-height 0.5s ease-in-out;
+} */
+
+
+.card:hover {
+  opacity: 1;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-.importance1 {
-  opacity: 0.4 !important;
+.cardHeader:hover{
+  opacity: 1;
+  pointer-events: all;
 }
 
-.importance2 {
-  opacity: 1 !important;
+.cardHeader.collapsed {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  cursor: 'pointer';
+  animation: bubbleOut 1.5s ease-in-out;
+}
+
+@keyframes bubbleIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes bubbleIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .card {
+  border-radius: 10px; /* Adjust the border-radius for rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  padding: 20px;
+  animation: bubbleIn 1.5s ease-in-out; /* Apply the bubble-in animation */
   margin-bottom: 20px;
-  transition: opacity 0.5s;
-}
-
-.card:hover {
-  opacity: 1 !important;
-}
-
-.cardHeader {
-  cursor: pointer;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  transition: box-shadow 0.5s ease-in-out;
+  opacity: 1;
+  border: none;
+  overflow-x: hidden;
 }
