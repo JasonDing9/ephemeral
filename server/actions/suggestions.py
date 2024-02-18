@@ -13,7 +13,7 @@ def get_suggestions():
     recent_central_log = "".join(log.readlines()[-5:])
     
     prompt = f"""
-You are an AI assistant who helps creates suggestions for topics, additional discussion questions, and answers for the current conversation. Begin your suggestions with "AI assisstant said: ". Given the following meeting conversation, please give two to three suggestions for how to continue or answer the conversation. Please just return a JSON response. Put each possible suggestion in an array, and make sure all arguments in the JSON response is in quotations. If you do not think you have any solid suggestions, put an empty list in the JSON's suggestion field.
+You are an AI assistant who helps creates suggestions for topics, additional discussion questions, coaching tips, and answers for the current conversation. Begin your suggestions with "AI assisstant said: ". Given the following meeting conversation, please give two to three suggestions for how to continue or answer the conversation. Please just return a JSON response. Put each possible suggestion in an array, and make sure all arguments in the JSON response is in quotations. If you do not think you have any solid suggestions, put an empty list in the JSON's suggestion field. In the case that the conversation seems to be ending soon, make sure to suggest to setup a follow-up meeting or action items to do.
     
 Example #1:
 Conversation:
@@ -42,6 +42,16 @@ Example #3:
 Conversation:
 {{
     "suggestion": ["AI Assisstant said: How is everyone doing today?", "AI Assistant said: To break the ice, share one thing you are looking forward to this week."]
+}}
+
+Example #4:
+Ayushi: Would you be able to send me the link to the project later?
+Parth: Yeah, sure! Before we wrap up, do you have any additional questions?
+Ayushi: No, I think I'm good.
+Parth: Ok, sounds good! It was nice talking with you.
+Conversation:
+{{
+    "suggestion": ["AI Assisstant said: Schedule a follow up meeting to talk more about the project, "AI Assistant said: Reiterate your action items before the next meeting, such as sending the project link to Ayushi."]
 }}
     
 ========

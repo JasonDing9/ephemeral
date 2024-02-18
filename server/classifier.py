@@ -4,8 +4,6 @@ import torch.nn.functional as F
 from sentence_transformers import SentenceTransformer
 from actions.get_link import get_link
 from actions.schedule_event import create_event
-from dotenv import load_dotenv
-import os
 
 from actions.create_email import create_email
 from actions.clarify_search import clarify_search
@@ -78,7 +76,3 @@ def classify(text):
         # return create_event(text)
     elif action == 'link':
         return get_link(text)
-
-# classify("I will send an email to Arvind to remind him to finish the project by this Friday.")
-# classify("Can everyone open the doccumentation of FAISS for our project?")
-# classify("Can everyone open the Tree Hacks slack?")
