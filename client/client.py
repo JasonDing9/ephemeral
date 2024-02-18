@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 from client_agent_handler import handle_response
 
 load_dotenv()
+NAME = os.environ['NAME']
 HOST = os.environ["HOST"]
 PORT = int(os.environ["SERVER_LISTEN_PORT"])
 
@@ -35,8 +36,9 @@ def transcribe(recognizer, audio):
         start = timer()
         transcribed_words = recognizer.recognize_whisper(audio)
         end = timer()
+        transcribed_words = f"{NAME} said: {transcribed_words}"
         print("Time elapsed:", end - start)
-        print("You said:", transcribed_words)
+        print(transcribed_words)
         print("=============")
         socket.sendall(transcribed_words.encode("utf-8"))
         response = socket.recv(1024).decode('utf-8')
