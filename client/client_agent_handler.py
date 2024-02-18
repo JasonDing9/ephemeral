@@ -79,5 +79,6 @@ def handle_response(response: str):
                 print("Error: Default image viewer not found.")
             
             
-    except:
+    except Exception as e:
         print("An error has occured in the handler.")
+        print(e)

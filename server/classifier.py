@@ -62,6 +62,12 @@ def classify(text):
     elif 'open up' in text.lower():
         print("Classified as link.")
         return get_link(text)
+    elif 'opening up' in text.lower():
+        print("Classified as link.")
+        return get_link(text)
+    elif 'repository' in text.lower():
+        print("Classified as link.")
+        return get_link(text)
     elif 'cheers' in text.lower():
         print("Classified as meeting over.")
         create_summary_image()
