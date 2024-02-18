@@ -61,9 +61,9 @@ function Notification(props) {
                 <Card.Title>{props.title}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{props.subtitle}</Card.Subtitle>
                 <Card.Text>{props.text}</Card.Text>
-                {/* {props.links.map((link, index) => (
+                {props.links && Array.isArray(props.links) && props.links.map((link, index) => (
                     <Card.Link key={index} href={link.url}>{link.name}</Card.Link>
-                ))} */}
+                ))}
             </Card.Body>}
         </Card>
     );
