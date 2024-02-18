@@ -1,35 +1,3 @@
-<<<<<<< HEAD
-Jason said:  Hello, I'm Lowe, how are you?
-Ayushi said:  It isn't her you.
-Ayushi said:  to talk about today.
-Ayushi said:  Sure. Um, what?
-Jason said:  Yeah, sure. What is the plan?
-Ayushi said:  I think we should discuss the status of our project.
-Jason said:  Okay, sure, let us open the Google Doc for the project ideation.
-Ayushi said:  Okay, sure. Let us open the Google Doc for the project ideation.
-Ayushi said:  Okay, um...
-Jason said:  Okay, by the way, do you know what the capital of Missouri is?
-Ayushi said:  No, I don't. What is the capital of misery?
-Jason said:  Aw, she's killed. 18th mentee.
-Jason said:  Yeah sure, let's send an email.
-Ayushi said:  Thank you for letting me know. Do you think we should send some emails to Courtney at the time to meet next week? Yeah sure, let's send in the email.
-Jason said:  Yeah, let's send an email for us to meet together tomorrow.
-Ayushi said:  Yeah, let's answer an email for us to meet together tomorrow.
-Jason said:  Okay.
-Jason said:  I think
-Jason said:  It will be email. So it's just saying this is in the handler function.
-Jason said:  Do you know which?
-Jason said:  It was from an email, you see.
-Jason said:  And you see it aired from and did receive was no.
-Jason said:  So it received a null and then it's up and it looks then.
-Jason said:  I will open the socket for a turn.
-Jason said:  How far did it happen?
-Jason said:  Do you receive it?
-=======
-Arvind said:  Park lets meet some time tomorrow at 2pm to do spring planning.
-Arvind said:  Thank you.
-Arvind said:  Okay, so you're not investing it probably. I'm going to leave here. Look at this old video.
-Arvind said:  Where did this chip come from?
-Arvind said:  Why did I come to it?
-Arvind said:  Ruhe! Ich loop von Hae Modulo. Oh Gott! Er sieht Wulje됐aya. Wulje Panama
->>>>>>> 7625f5ac2cdd6361bd71cb9040cc209ace316137
+Parth said:  Yeah, I'll send an email to you tomorrow to confirm things.
+Parth said:  Talk about the project.
+Parth said: ・・・

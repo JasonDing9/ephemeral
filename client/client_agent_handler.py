@@ -31,35 +31,38 @@ def handle_response(response: str):
         print("JSON failed to load")
         return
     notification = {}
-        
-    if json_response['action'] == 'email':
-        draft_email(json_response['recipient'], json_response['subject'], json_response['body'], USER_EMAIL)
-        json_response['creation_time'] = datetime.now().isoformat()
-        write_to_file(json_response)
-
-    elif json_response['action'] == 'link':
-        if json_response['link'] != "":
-            json_response['creation_time'] = datetime.now().isoformat()
-            write_to_file(json_response)
-        
-    elif json_response['action'] == 'schedule':
-        link = create_event(json_response['attendeeEmails'], json_response['startTime'], json_response['summary'], json_response["description"])
-        start_time = datetime.strptime(json_response["startTime"], "%Y-%m-%dT%H:%M:%S")
-        start_time = start_time.strftime("%b %d at %I:%M%p")
-        json_response['start_time'] = start_time
-        json_response["link"] = link
-        json_response['creation_time'] = datetime.now().isoformat()
-        write_to_file(json_response)
-
-    elif json_response['action'] == 'clarify':
-        if json_response['result'] != "NONE":
+    
+    try:
+        if json_response['action'] == 'email':
+            draft_email(json_response['recipient'], json_response['subject'], json_response['body'], USER_EMAIL)
             json_response['creation_time'] = datetime.now().isoformat()
             write_to_file(json_response)
 
-    elif json_response['action'] == 'assistant':
-        speak(json_response['answer'])
+        elif json_response['action'] == 'link':
+            if json_response['link'] != "":
+                json_response['creation_time'] = datetime.now().isoformat()
+                write_to_file(json_response)
             
-    elif json_response['action'] == 'suggestion':
-        if json_response['suggestion'] != []:
+        elif json_response['action'] == 'schedule':
+            link = create_event(json_response['attendeeEmails'], json_response['startTime'], json_response['summary'], json_response["description"])
+            start_time = datetime.strptime(json_response["startTime"], "%Y-%m-%dT%H:%M:%S")
+            start_time = start_time.strftime("%b %d at %I:%M%p")
+            json_response['start_time'] = start_time
+            json_response["link"] = link
             json_response['creation_time'] = datetime.now().isoformat()
             write_to_file(json_response)
+
+        elif json_response['action'] == 'clarify':
+            if json_response['result'] != "NONE":
+                json_response['creation_time'] = datetime.now().isoformat()
+                write_to_file(json_response)
+
+        elif json_response['action'] == 'assistant':
+            speak(json_response['answer'])
+                
+        elif json_response['action'] == 'suggestion':
+            if json_response['suggestion'] != []:
+                json_response['creation_time'] = datetime.now().isoformat()
+                write_to_file(json_response)
+    except:
+        print("An error has occured in the handler.")
