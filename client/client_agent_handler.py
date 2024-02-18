@@ -22,7 +22,8 @@ def handle_response(response: str):
         send_notification("Email drafted to " + json_response['recipient'] + " regarding " + json_response["subject"], "Email Drafted")
 
     elif json_response['action'] == 'link':
-        send_notification(f"Does this link help: {json_response['link']}", json_response["description"])
+        if json_response['link'] != "":
+            send_notification(f"Does this link help: {json_response['link']}", json_response["description"])
         
     elif json_response['action'] == 'schedule':
         link = create_event(json_response['attendees'], json_response['startTime'], json_response['summary'], json_response["description"])
