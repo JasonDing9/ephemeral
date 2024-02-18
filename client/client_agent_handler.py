@@ -29,37 +29,28 @@ def handle_response(response: str):
     notification = {}
     if json_response['action'] == 'email':
         draft_email(json_response['recipient'], json_response['subject'], json_response['body'], USER_EMAIL)
-        notification['title'] = "Email Drafted"
-        notification['body'] = "Email drafted to " + json_response['recipient'] + " regarding " + json_response["subject"]
-        write_to_file(notification)
+        write_to_file(json_response)
         # send_notification("Email drafted to " + json_response['recipient'] + " regarding " + json_response["subject"], "Email Drafted")
 
     elif json_response['action'] == 'link':
         if json_response['link'] != "":
-            notification['title'] = json_response['description']
-            notification['body'] = f"Does this link help: {json_response['link']}"
-            write_to_file(notification)
+            write_to_file(json_response)
             # send_notification(f"Does this link help: {json_response['link']}", json_response["description"])
         
     elif json_response['action'] == 'schedule':
         link = create_event(json_response['attendeeEmails'], json_response['startTime'], json_response['summary'], json_response["description"])
         start_time = datetime.strptime(json_response["startTime"], "%Y-%m-%dT%H:%M:%S")
         start_time = start_time.strftime("%b %d at %I:%M%p")
-        notification['title'] = "Event Scheduled"
-        notification['body'] = f"{json_response['summary']} + scheduled at {start_time}. {link}"
-        write_to_file(notification)
+        json_response['start_time'] = start_time
+        write_to_file(json_response)
         # send_notification(f"{json_response['summary']} + scheduled at {start_time}. {link}", "Event Scheduled")
 
     elif json_response['action'] == 'clarify':
         if json_response['result'] != "NONE":
-            notification['title'] = "Quick Insight"
-            notification['body'] = json_response['result']
-            write_to_file(notification)
+            write_to_file(json_response)
             # send_notification(json_response['result'], "Quick Insight")
         else:
-            notification['title'] = "More Info"
-            notification['body'] = json_response['search_query']
-            write_to_file(notification)
+            write_to_file(json_response)
             # send_notification(search_google(json_response['search_query']), "More Info")
 
     elif json_response['action'] == 'assistant':
@@ -67,7 +58,5 @@ def handle_response(response: str):
             
     elif json_response['action'] == 'suggestion':
         if json_response['suggestion'] != []:
-            notification['title'] = "Suggestions"
-            notification['body'] = "\n\n".join(json_response['suggestion'])
-            write_to_file(notification)
+            write_to_file(json_response)
             # send_notification("\n\n".join(json_response['suggestion']), "Suggestions")
