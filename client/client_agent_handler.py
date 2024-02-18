@@ -27,9 +27,10 @@ def send_notification(message, title="Notification Title"):
 
 def handle_response(response: str):
     try:
-        json_response = json.loads(response[:response.find("}")+1])
-    except:
+        json_response = json.loads(response)
+    except Exception as e:
         print("JSON failed to load")
+        print(e)
         return
     notification = {}
     
