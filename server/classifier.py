@@ -10,6 +10,7 @@ import os
 from actions.create_email import create_email
 from actions.clarify_search import clarify_search
 from actions.assistant import assistant
+from actions.imageGen import create_summary_image
 
 CLASSES = ["clarify", "email", "link", "schedule", "unknown"]
 
@@ -63,6 +64,10 @@ def classify(text):
     elif 'open up' in text.lower():
         print("Classified as link.")
         return get_link(text)
+    elif 'cheers' in text.lower():
+        print("Classified as meeting over.")
+        create_summary_image()
+        return None
     
     input_ = torch.Tensor(encoder.encode([text]))
     output = classifier(input_)

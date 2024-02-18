@@ -49,7 +49,7 @@ def transcribe(recognizer, audio):
         print(transcribed_words)
         print("=============")
         action_socket.sendall(transcribed_words.encode("utf-8"))
-        response = action_socket.recv(4096).decode('utf-8')
+        response = action_socket.recv(1000000).decode('utf-8')
         if not response:
             return
         print("Data Received: " + response)
