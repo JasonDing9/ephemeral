@@ -57,7 +57,7 @@ function App() {
             <br />
             <Row>
               <Col>
-                {notifications.reverse().map((item, index) => {
+                {notifications.map((item, index) => {
                   switch (item.action) {
                     case 'email':
                       return (
