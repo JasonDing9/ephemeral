@@ -6,3 +6,4 @@ The following link is to doccumentation for how to use FAISS with LangChain: htt
 The following link is to the Tree Hacks 2024 slack workspace: https://app.slack.com/client/T06FWS6JBLG/C06GMMNGQ0J?cdn_fallback=1
 The following link is to doccumentation for how to use Together.ai's python API: https://docs.together.ai/docs/inference-python
 The following link is to the Google Drive folder that stores all the project's doccuments: https://drive.google.com/drive/u/1/folders/12A1fIfawGEhYo0qhOcgGsxsJdN5HUyje
+The following link is to general Python doccumentation: https://docs.python.org/3/
