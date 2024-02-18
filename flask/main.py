@@ -1,11 +1,13 @@
 from flask import Flask
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import os
 
 app = Flask(__name__)
 CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/")
+@cross_origin()
 def read_from_data():
     content = []
     data_folder = './data'
@@ -14,7 +16,7 @@ def read_from_data():
             data = file.read()
             content.append(data)
 
-    for filename in os.listdir(data_folder):
-        os.remove(os.path.join(data_folder, filename))
+    # for filename in os.listdir(data_folder):
+    #     os.remove(os.path.join(data_folder, filename))
         
     return content

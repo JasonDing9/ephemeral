@@ -19,26 +19,33 @@ SEND_PORT = int(os.environ["SERVER_SEND_PORT"])
 FILE = open("actions/central-log.txt", "w")
 FILE.seek(0)
 FILE.truncate()
+FILE.close()
 
 def handle_client(client_socket):
     # This function will handle the communication with each client
     while True:
+        file = open("actions/central-log.txt", "a")
+        
         # Receive data from the client
         data = client_socket.recv(1024)
         if not data:
             break  # Break the loop if no data is received
         print(f"Received data from {client_socket.getpeername()}: {data.decode('utf-8')}")
         data = data.decode('utf-8')
-        if (data.find(":") + 2 > len(data)):
-            FILE.write(data + "\n")
+        print(f"Write? {data.find(':')} + 2 < {len(data)}")
+        if (data.find(":") + 2 < len(data)):
+            file.write(data + "\n")
         json_result = classify(data)
-        FILE.write(data)
+        # file.write(data)
         if json_result:
             client_socket.sendall(json_result.encode('utf-8'))
         else: 
             client_socket.sendall("No results".encode('utf-8'))
+            
+        file.close()
     # Close the connection when the client disconnects
     print(f"Connection with {client_socket.getpeername()} closed.")
+    file.close()
     client_socket.close()
 
 def start_server():
@@ -75,11 +82,14 @@ def start_server():
 
 def send_insights(send_client_socket):
     while True:
-        # data = send_client_socket.recv(1024)
-        # if not data:
-        #     break
+        data = send_client_socket.recv(1024)
+        if not data:
+            break
         
         results = get_suggestions()
+        print("-========START========-")
+        print("Results: " + results)
+        print("-=========END=========-")
         send_client_socket.sendall(results.encode('utf-8'))
 
 def shutdown_server():

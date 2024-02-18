@@ -25,8 +25,13 @@ def send_notification(message, title="Notification Title"):
     subprocess.run(["osascript", "-e", script])
 
 def handle_response(response: str):
-    json_response = json.loads(response)
+    try:
+        json_response = json.loads(response)
+    except:
+        print("JSON failed to load")
+        return
     notification = {}
+        
     if json_response['action'] == 'email':
         draft_email(json_response['recipient'], json_response['subject'], json_response['body'], USER_EMAIL)
         write_to_file(json_response)
