@@ -62,10 +62,12 @@ def clarify_search(context):
     if not response.find("{") or not response.find("}"):
         return -1
     json_result = response[response.find("{"):response.find("}")+1]
-    print(json_result)
+    try:
+        json_result = json.loads(json_result)
+        print(json_result)
+    except:
+        return 
     
-    json_result = json.loads(json_result)
-
     json_result['action'] = 'clarify'
 
     return json.dumps(json_result)
