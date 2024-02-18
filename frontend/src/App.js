@@ -8,6 +8,7 @@ import Col from 'react-bootstrap/Col';
 import CalendarInviteCard from './notifications/CalendarInviteCard';
 import EmailDraftCard from './notifications/EmailDraftCard';
 import OpenLinkCard from './notifications/OpenLinkCard';
+import ClarifyCard from './notifications/ClarifyCard';
 import React, { useState, useEffect } from 'react';
 
 function App() {
@@ -77,6 +78,14 @@ function App() {
                       description={item.description}
                     />
                   );
+                case 'clarify':
+                  return (
+                    <ClarifyCard
+                      key={index}
+                      timestamp={item.creation_time}
+                      description={item.result}
+                    />
+                  )
                 default:
                   return null;
               }
