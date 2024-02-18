@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from sentence_transformers import SentenceTransformer
 from actions.get_link import get_link
+from actions.schedule_event import create_event
 from dotenv import load_dotenv
 import os
 
@@ -55,6 +56,9 @@ def classify(text):
         return create_email(text)
     if action == 'clarify':
         return clarify_search(text)
+    if action == 'schedule':
+        return create_event(text)
 
 # classify("I will send an email to Arvind to remind him to finish the project by this Friday.")
 # classify("Can everyone open the doccumentation of FAISS for our project?")
+# classify("Ayushi said: Let's all meet tomorrow 2 PM to discuss sprint planning for this project")
