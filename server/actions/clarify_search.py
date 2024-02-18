@@ -62,7 +62,12 @@ def clarify_search(context):
     if not response.find("{") or not response.find("}"):
         return -1
     json_result = response[response.find("{"):response.find("}")+1]
-    print(json_result)
+    try:
+        json_result = json.loads(json_result)
+        print(json_result)
+    except json.JSONDecodeError as e:
+        print(f"Error decoding JSON: {e}")
+        return 
     
     json_result = json.loads(json_result)
 
