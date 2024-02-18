@@ -24,22 +24,7 @@
   padding-top: 0;
   padding-bottom: 0;
   cursor: 'pointer';
-  animation: bubbleOut 1.5s ease-in-out;
-}
-
-@keyframes bubbleIn {
-  0% {
-    transform: scale(0);
-    opacity: 0;
-  }
-  50% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
+  transition: ease-in-out 0.3s;
 }
 
 @keyframes bubbleIn {
@@ -69,9 +54,4 @@
   opacity: 1;
   border: none;
   overflow-x: hidden;
-}
-
-
-.wrapper {
-  height: 100%;
 }
