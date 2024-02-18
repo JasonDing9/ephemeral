@@ -65,8 +65,7 @@ def clarify_search(context):
     try:
         json_result = json.loads(json_result)
         print(json_result)
-    except json.JSONDecodeError as e:
-        print(f"Error decoding JSON: {e}")
+    except:
         return 
     
     json_result = json.loads(json_result)
