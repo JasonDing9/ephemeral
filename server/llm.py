@@ -199,11 +199,137 @@ I3 connects to I1
 I0 connects to I2
 I0 connects to I3
 Entity Locations:
-"""
+I0 is located at [9, 40, 11, 21]
+I1 is located at [30, 37, 66, 26]
+I2 is located at [66, 0, 10, 20]
+I3 is located at [66, 75, 10, 21]
+T0 is located at [12, 35, 6, 5]
+
+Caption:
+A diagram showing the components of a slipper spring. It includes a spring hanger, a spring bolt and locknut, a two rebound clips, a slipper, and a centre bolt.
+Topic:
+engineering
+Diagram Layout:
+abstract
+Required Entities:
+spring hanger image (I0)
+spring bolt and locknut image (I1)
+rebound clip image (I2)
+rebound clip image (I3)
+slipper image (I4)
+"spring hanger" text label (T0)
+"spring bolt & locknut" text label (T1)
+"rebound clip" text label (T2)
+"slipper" text label (T3)
+"centre bolt" text label (T4)
+centre bolt image (I5)
+"eye/slipper spring components" text label (T5)
+Entity Relationships:
+T0 labels I0
+T3 labels I4
+T2 labels I2
+T4 labels I5
+T2 labels I3
+T1 labels I1
+Entity Locations:
+I0 is located at [6, 18, 8, 24]
+I1 is located at [7, 29, 4, 11]
+I2 is located at [22, 56, 5, 18]
+I3 is located at [65, 49, 6, 16]
+I4 is located at [81, 17, 16, 16]
+T0 is located at [16, 6, 15, 8]
+T1 is located at [2, 72, 20, 7]
+T2 is located at [75, 77, 13, 8]
+T3 is located at [67, 2, 7, 6]
+T4 is located at [42, 91, 11, 6]
+I5 is located at [45, 64, 3, 15]
+T5 is located at [61, 91, 33, 8]
+
+Caption:
+A diagram showing a simple electronic circuit with a lamp and a battery.
+Topic:
+engineering
+Diagram Layout:
+circular
+Required Entities:
+lamp image (I0)
+battery image (I1)
+"lamp" text label (T0)
+"battery" text label (T1)
+Entity Relationships:
+T1 labels I1
+I0 connects to I1
+I1 connects to I0
+T0 labels I0
+Entity Locations:
+I0 is located at [32, 12, 28, 38]
+I1 is located at [27, 65, 31, 22]
+T0 is located at [31, 2, 14, 7]
+T1 is located at [28, 90, 21, 7]
+
+Caption:
+A diagram showing the flow of energy through various processes, including energy conversion, storage, and distribution. Each process is represented as a block. It also shows the sun as an energy source going into the energy conversion, and energy use as a light bulb and electric utility as powerlines coming out of the energy distribution.
+Topic:
+engineering
+Diagram Layout:
+tree
+Required Entities:
+sun image (I0)
+metal plate image (I1)
+block image (I2)
+block image (I3)
+light bulb image (I4)
+block image (I5)
+powerline image (I6)
+"energy source" text label (T0)
+"energy conversion" text label (T1)
+"energy storage" text label (T2)
+"energy inversion & conditioning" text label (T3)
+"energy use" text label (T4)
+"energy distribution" text label (T5)
+"electric utility" text label (T6)
+Entity Relationships:
+I3 has an arrow to I2
+T0 labels I0
+I6 has an arrow to I5
+I2 has an arrow to I3
+T2 labels I2
+I2 has an arrow to I5
+I5 has an arrow to I6
+T6 labels I6
+I0 has an arrow to I1
+I1 has an arrow to I2
+T5 labels I5
+I5 has an arrow to I4
+T1 labels I1
+T4 labels I4
+T3 labels I3
+Entity Locations:
+I0 is located at [0, 2, 11, 20]
+I1 is located at [9, 38, 20, 17]
+I2 is located at [44, 28, 12, 35]
+I3 is located at [43, 78, 16, 20]
+I4 is located at [70, 2, 12, 20]
+I5 is located at [72, 37, 10, 18]
+I6 is located at [69, 71, 18, 28]
+T0 is located at [1, 26, 10, 11]
+T1 is located at [10, 57, 15, 11]
+T2 is located at [30, 83, 12, 14]
+T3 is located at [43, 11, 16, 18]
+T4 is located at [83, 8, 11, 12]
+T5 is located at [82, 39, 17, 14]
+T6 is located at [87, 78, 10, 15]
+
+Caption:
+A diagram showing a battery with a light bulb connected to it.
+Topic:
+engineering
+Diagram Layout:
+circular"""
 output = together.Complete.create(
   prompt = f"[INST] {prompt} [/INST]", 
-  model = "codellama/CodeLlama-34b-Instruct-hf", 
-  max_tokens = 13500,
+  model = "codellama/CodeLlama-7b-Instruct-hf", 
+  max_tokens = 12000,
   temperature = 0.7,
   top_k = 50,
   top_p = 0.7,
