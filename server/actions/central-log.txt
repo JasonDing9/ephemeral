@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Jason said:  Hello, I'm Lowe, how are you?
 Ayushi said:  It isn't her you.
 Ayushi said:  to talk about today.
@@ -24,3 +25,11 @@ Jason said:  So it received a null and then it's up and it looks then.
 Jason said:  I will open the socket for a turn.
 Jason said:  How far did it happen?
 Jason said:  Do you receive it?
+=======
+Arvind said:  Park lets meet some time tomorrow at 2pm to do spring planning.
+Arvind said:  Thank you.
+Arvind said:  Okay, so you're not investing it probably. I'm going to leave here. Look at this old video.
+Arvind said:  Where did this chip come from?
+Arvind said:  Why did I come to it?
+Arvind said:  Ruhe! Ich loop von Hae Modulo. Oh Gott! Er sieht Wulje됐aya. Wulje Panama
+>>>>>>> 7625f5ac2cdd6361bd71cb9040cc209ace316137

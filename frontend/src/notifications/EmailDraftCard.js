@@ -8,8 +8,8 @@ function EmailDraftCard(props) {
             timestamp={props.timestamp}
             title={title}
             subtitle={props.emailTitle}
-            body={props.emailBody}
-            links={[{url: props.url, name: "Open Draft"}]}
+            text={props.emailBody}
+            // links={[{url: props.url, name: "Open Draft"}]}
         />
     );
 }
