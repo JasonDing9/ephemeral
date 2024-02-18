@@ -8,32 +8,26 @@ import Col from 'react-bootstrap/Col';
 import CalendarInviteCard from './notifications/CalendarInviteCard';
 import EmailDraftCard from './notifications/EmailDraftCard';
 import OpenLinkCard from './notifications/OpenLinkCard';
+import ClarifyCard from './notifications/ClarifyCard';
 import React, { useState, useEffect } from 'react';
 
 function App() {
   const now = new Date();
-  const [calendarInvites, setCalendarInvites] = useState([]);
-  const [emailDrafts, setEmailDrafts] = useState([]);
-  const [openLinks, setOpenLinks] = useState([]);
+  const [notifications, setNotifications] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:5000');
+      const sortedData = response.data.sort((a, b) => b.creation_time - a.creation_time);
+      setNotifications(sortedData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      axios.get('http://127.0.0.1:5000').then(response => {
-        response.data.forEach(item => {
-          switch (item['action']) {
-            case 'email':
-              setEmailDrafts(emailDrafts => [...emailDrafts, item]);
-              break;
-            case 'schedule':
-              setCalendarInvites(calendarInvites => [...calendarInvites, item]);
-              break;
-            case 'link':
-              setOpenLinks(openLinks => [...openLinks, item]);
-              break;
-          }
-        });
-        // console.log(JSON.parse(response.data[0]));
-      });
+      fetchData();
     }, 1000);
 
     return () => clearInterval(intervalId);
@@ -50,28 +44,52 @@ function App() {
         <br />
         <Row>
           <Col>
-            {calendarInvites.map((invite, index) => (
-              <CalendarInviteCard
-                key={index}
-                timestamp={invite.timestamp}
-                emails={invite.emails}
-                description={invite.description}
-                eventTitle={invite.eventTitle}
-                url={invite.url}
-              />
-            ))}
-            <EmailDraftCard
-              timestamp={new Date(now.getTime() - 25000)} // 25 seconds before now
-              recipient="ayushi.batwara@berkeley.edu"
-              emailTitle="Follow-up on meeting"
-              emailBody="Hi Ayushi, Just following up on the email I sent yesterday. Best, Arvind"
-              url="https://google.com"
-            />
-            <OpenLinkCard
-              timestamp={new Date(now.getTime() - 10 * 60000)} // 10 minutes before now
-              url="https://docs.google.com/document/d/1eXAcPF0r35dyT_zn38gOPHIMLsN2G1MxM8f-rjSWodY/edit"
-              description="Tree Hacks Project Ideation Doc"
-            />
+            {notifications.map((item, index) => {
+              switch (item.action) {
+                case 'email':
+                  return (
+                    <EmailDraftCard
+                      key={index}
+                      timestamp={item.creation_time}
+                      recipient={item.recipient}
+                      emailTitle={item.subject}
+                      emailBody={item.body}
+                      // url={item.link}
+                    />
+                  );
+                case 'schedule':
+                  return (
+                    <CalendarInviteCard
+                      key={index}
+                      start_time={item.start_time}
+                      timestamp={item.creation_time}
+                      emails={item.attendeeEmails}
+                      description={item.description}
+                      eventTitle={item.summary}
+                      url={item.link}
+                    />
+                  );
+                case 'link':
+                  return (
+                    <OpenLinkCard
+                      key={index}
+                      timestamp={item.creation_time}
+                      url={item.link}
+                      description={item.description}
+                    />
+                  );
+                case 'clarify':
+                  return (
+                    <ClarifyCard
+                      key={index}
+                      timestamp={item.creation_time}
+                      description={item.result}
+                    />
+                  )
+                default:
+                  return null;
+              }
+            })}
           </Col>
         </Row>
       </Container>
