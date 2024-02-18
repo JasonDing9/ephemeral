@@ -2,12 +2,14 @@ import together
 import os
 from dotenv import load_dotenv
 import json
+import time
 
 load_dotenv()
 together.api_key = os.environ['TOGETHER_API']
 USER_EMAIL = os.environ['USER_EMAIL']
 
 def assistant(question: str):
+    start = time.time()
     log = open("actions/central-log.txt", "r")
     recent_central_log = "".join(log.readlines()[-4:])
     
@@ -49,7 +51,7 @@ JSON Response:
         try:
             output = together.Complete.create(
                 prompt = f"[INST] {prompt} [/INST]",
-                model = "meta-llama/Llama-2-70b-chat-hf", 
+                model = "mistralai/Mistral-7B-Instruct-v0.1", 
                 max_tokens = 1024,
                 temperature = 0.7,
                 top_k = 50,
@@ -61,7 +63,7 @@ JSON Response:
 
             # print generated text
             response = output['output']['choices'][0]['text']
-            if not response.find("{") or not response.find("}"):
+            if response.find("{") == -1 or response.find("}") == -1:
                 raise Exception("Sorry, no JSON object to be found")
             json_result = response[response.find("{"):response.find("}")+1]
             print(json_result)
@@ -69,11 +71,13 @@ JSON Response:
             json_result = json.loads(json_result)
             json_result["action"] = "assistant"
             success = True
-        except:
+        except Exception as e:
+            print(e)
             print("An error occured. Retrying...")
             pass 
         
         if success:
             break
 
+    print(f"Took {time.time() - start} seconds")
     return json.dumps(json_result)
