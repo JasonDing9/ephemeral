@@ -34,8 +34,8 @@ function Notification(props) {
 
     useEffect(() => {
       const updateTime = () => {
-        const timeDifference = new Date() - props.timestamp;
-        const newTimeString = timeAgo(props.timestamp);
+        const timeDifference = new Date() - new Date(props.timestamp);
+        const newTimeString = timeAgo(new Date(props.timestamp));
         setTimeString(newTimeString);
       };
   
