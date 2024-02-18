@@ -7,8 +7,6 @@ from actions.schedule_event import create_event
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
-NAME = os.environ['NAME']
 from actions.create_email import create_email
 from actions.clarify_search import clarify_search
 
@@ -51,14 +49,19 @@ def classify(text):
     action = CLASSES[output.argmax(1)]
     print("Classified as: " + action)
     
-    text = NAME + " said: " + text
     if action == 'email':
         return create_email(text)
-    if action == 'clarify':
+    elif action == 'clarify':
         return clarify_search(text)
-    if action == 'schedule':
+    elif action == 'schedule':
         return create_event(text)
 
 # classify("I will send an email to Arvind to remind him to finish the project by this Friday.")
 # classify("Can everyone open the doccumentation of FAISS for our project?")
 # classify("Ayushi said: Let's all meet tomorrow 2 PM to discuss sprint planning for this project")
+    elif action == 'link':
+        return get_link(text)
+
+# classify("I will send an email to Arvind to remind him to finish the project by this Friday.")
+# classify("Can everyone open the doccumentation of FAISS for our project?")
+# classify("Can everyone open the Tree Hacks slack?")

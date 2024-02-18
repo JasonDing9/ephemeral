@@ -21,6 +21,9 @@ def handle_response(response: str):
         draft_email(json_response['recipient'], json_response['subject'], json_response['body'], USER_EMAIL)
         send_notification("Email drafted to " + json_response['recipient'] + " regarding " + json_response["subject"], "Email Drafted")
 
+    elif json_response['action'] == 'link':
+        send_notification(f"Does this link help: {json_response['link']}", json_response["description"])
+        
     elif json_response['action'] == 'schedule':
         create_event(json_response['attendees'], json_response['startTime'], json_response['summary'], json_response["description"])
         start_time = datetime.strptime(json_response["startTime"], "%Y-%m-%dT%H:%M:%S")
