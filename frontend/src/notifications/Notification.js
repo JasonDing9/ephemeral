@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import { ChevronUp, ChevronDown } from 'react-bootstrap-icons';
 
 function timeAgo(date) {
@@ -52,9 +53,12 @@ function Notification(props) {
         return () => clearTimeout(collapseTimeout);
       }, []);
     
-
+      const openLink = (linkUrl) => {
+        window.open(linkUrl, '_blank');
+      };
+    
     return (
-        <Card className='card' bg="dark" style={{'color': "#fff"}}>
+        <Card className='card' style={{'color': "#000", 'backgroundColor': "rgba(255, 255, 255, 0.8)"}}>
             <Card.Text  className={`cardHeader ${collapsed ? 'collapsed' : ''}`} onClick={() => setCollapsed(!collapsed)}>
                 {collapsed ? props.title : timeAgo(props.timestamp)}
 
@@ -62,12 +66,12 @@ function Notification(props) {
                     {collapsed ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
                 </div>
             </Card.Text>
-            {!collapsed && <Card.Body>
+            {!collapsed && <Card.Body style={{"textAlign": "center"}}>
                 <Card.Title>{props.title}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{props.subtitle}</Card.Subtitle>
                 <Card.Text>{props.text}</Card.Text>
                 {props.links && Array.isArray(props.links) && props.links.map((link, index) => (
-                    <Card.Link key={index} href={link.url}>{link.name}</Card.Link>
+                    <Button variant="light" onClick={() => openLink(link.url)}>{link.name}</Button>
                 ))}
             </Card.Body>}
         </Card>

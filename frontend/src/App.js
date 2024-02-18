@@ -14,6 +14,8 @@ import ClarifyCard from './notifications/ClarifyCard';
 import SuggestionCard from './notifications/SuggestionCard';
 import React, { useState, useEffect } from 'react';
 
+import backgroundImage from './background.gif'
+
 function App() {
   const now = new Date();
   const [notifications, setNotifications] = useState([]);
@@ -42,7 +44,7 @@ function App() {
   }, []);
 
   return (
-    <div className='wrapper'>
+    <div className='wrapper' style={{'backgroundImage': `url(${backgroundImage})`, 'height': '100%', 'filter': 'invert(100%) hue-rotate(200deg) saturate(60%)'}}>
       <Navbar className="bg-body-secondary">
         <Container>
           <Navbar.Brand>Invisible Me</Navbar.Brand>

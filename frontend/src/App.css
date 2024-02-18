@@ -70,3 +70,8 @@
   border: none;
   overflow-x: hidden;
 }
+
+
+.wrapper {
+  height: 100%;
+}
