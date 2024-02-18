@@ -1,0 +1,24 @@
+.collapsed {
+  display: none;
+}
+
+.importance1 {
+  opacity: 0.4 !important;
+}
+
+.importance2 {
+  opacity: 1 !important;
+}
+
+.card {
+  margin-bottom: 20px;
+  transition: opacity 0.5s;
+}
+
+.card:hover {
+  opacity: 1 !important;
+}
+
+.cardHeader {
+  cursor: pointer;
+}
