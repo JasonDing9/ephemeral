@@ -10,7 +10,10 @@ load_dotenv()
 socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 HOST = os.environ["HOST"]
 PORT = int(os.environ["SERVER_LISTEN_PORT"])
-FILE = open("central-log.txt", "a")
+
+FILE = open("actions/central-log.txt", "w")
+FILE.seek(0)
+FILE.truncate()
 
 def handle_client(client_socket):
     # This function will handle the communication with each client
@@ -21,7 +24,7 @@ def handle_client(client_socket):
             break  # Break the loop if no data is received
         print(f"Received data from {client_socket.getpeername()}: {data.decode('utf-8')}")
         data = data.decode('utf-8')
-    
+        FILE.write(data)
         json_result = classify(data)
         FILE.write(data)
         if json_result:
