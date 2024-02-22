@@ -32,7 +32,7 @@ Our goal was to build an **autonomous agent** that could be that person for you 
 
 ## What it does
 
-Invisible Me is an **autonomous AI agent** that interacts with the world primarily through the modality of **voice**. It can sit in on meetings, calls, anywhere you have your computer out.
+Ephemeral is an **autonomous AI agent** that interacts with the world primarily through the modality of **voice**. It can sit in on meetings, calls, anywhere you have your computer out.
 
 It’s power is the ability to take what it hears and proactively carry out repetitive actions for you such as be a real-time AI assistant in meetings, draft emails directly in your Google inbox, schedule calendar events and invite attendees, search knowledge corpuses or the web for answers to questions, image generation, and more.
 
