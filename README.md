@@ -12,6 +12,20 @@ After pulling:
 
 - Run ```pip install -r requirements.txt```
 
+### Example .env configuration
+
+```
+TOGETHER_API = "secret"
+USER_EMAIL = "pgasawa@berkeley.edu"
+HOST = "1.1.1.1"
+SERVER_LISTEN_PORT = "12342"
+SERVER_SEND_PORT = "12343"
+NAME = "Parth"
+OPENAI_API_KEY = "secret"
+```
+
+You can find your host IP address by running ```ifconfig | grep "inet "```. You will need to generate a Together AI API Key and an OpenAI API Key.
+
 ## Run
 
 1. Run ```flask --app main run``` from the ```flask``` folder
