@@ -26,7 +26,8 @@ OPENAI_API_KEY = "secret"
 
 You can find your host IP address by running ```ifconfig | grep "inet "```. You will need to generate a Together AI API Key and an OpenAI API Key.
 
-Additionally, create a Google Cloud project with email and calendar scopes. Add the emails of accounts you want to use, and then download credentials.json and put it into the ```client``` folder.
+### Google Cloud Setup
+Create a Google Cloud project with email and calendar scopes. Add the emails of accounts you want to use, and then download credentials.json and put it into the ```client``` folder.
 
 ## Run
 
