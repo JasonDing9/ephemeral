@@ -26,6 +26,8 @@ OPENAI_API_KEY = "secret"
 
 You can find your host IP address by running ```ifconfig | grep "inet "```. You will need to generate a Together AI API Key and an OpenAI API Key.
 
+Additionally, create a Google Cloud project with email and calendar scopes. Add the emails of accounts you want to use, and then download credentials.json and put it into the ```client``` folder.
+
 ## Run
 
 1. Run ```flask --app main run``` from the ```flask``` folder
@@ -34,7 +36,7 @@ You can find your host IP address by running ```ifconfig | grep "inet "```. You 
 3. Run ```python client.py``` from the ```client``` folder
 3. Run ```python client_ping.py``` from the ```client``` folder
 
-# Information (from [Devpost](https://github.com/pgasawa/ephemeral))
+# Information (from [Devpost](https://devpost.com/software/invisible-me))
 
 ## Inspiration
 
