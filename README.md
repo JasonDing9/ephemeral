@@ -38,6 +38,8 @@ Create a Google Cloud project with email and calendar scopes. Add the emails of 
 3. Run ```python client_ping.py``` from the ```client``` folder
 
 # Information (from [Devpost](https://devpost.com/software/invisible-me))
+## Demo Video
+[![Ephemeral Demo Video](https://img.youtube.com/vi/thlFX-JA9cE/0.jpg)](https://www.youtube.com/watch?v=thlFX-JA9cE)
 
 ## Inspiration
 
